@@ -49,8 +49,374 @@ body {
         opacity 1s cubic-bezier(0.77, 0, 0.18, 1),
         transform 1.2s cubic-bezier(0.77, 0, 0.18, 1),
         filter 1s ease;
+
+        /* =========================================================
+   HIỆU ỨNG GIAO DIỆN 1 — NÂNG CẤP
+========================================================= */
+
+/* =====================================================
+   DUST PARTICLES — BỤI VÀNG (CẢI TIẾN)
+===================================================== */
+
+.dust-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
 }
 
+.dust-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0));
+    box-shadow: 0 0 6px 2px rgba(255, 215, 0, 0.1);
+    animation: dustFloat linear infinite;
+    opacity: 0;
+}
+
+.dust-particle.slow {
+    animation-duration: 8s;
+}
+
+.dust-particle.fast {
+    animation-duration: 4s;
+}
+
+.dust-particle.bright {
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.1));
+    box-shadow: 0 0 12px 4px rgba(255, 215, 0, 0.2);
+}
+
+@keyframes dustFloat {
+    0% {
+        transform: translateY(0) translateX(0) scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.9;
+        transform: translateY(-15vh) translateX(15px) scale(1.2);
+    }
+    40% {
+        opacity: 0.6;
+        transform: translateY(-35vh) translateX(-10px) scale(0.8);
+    }
+    60% {
+        opacity: 0.9;
+        transform: translateY(-55vh) translateX(20px) scale(1.1);
+    }
+    80% {
+        opacity: 0.4;
+        transform: translateY(-75vh) translateX(-5px) scale(0.6);
+    }
+    100% {
+        transform: translateY(-95vh) translateX(10px) scale(0);
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   LIGHT SWEEP — VỆT SÁNG DI CHUYỂN
+===================================================== */
+
+.light-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255, 215, 0, 0.00) 30%,
+        rgba(255, 215, 0, 0.04) 45%,
+        rgba(255, 215, 0, 0.08) 50%,
+        rgba(255, 215, 0, 0.04) 55%,
+        rgba(255, 215, 0, 0.00) 70%,
+        transparent 100%
+    );
+    z-index: 3;
+    pointer-events: none;
+    animation: sweepLight 7s ease-in-out infinite;
+    transform: rotate(8deg);
+}
+
+@keyframes sweepLight {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    30% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.2;
+    }
+    100% {
+        left: 120%;
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   SHOOTING STARS — SAO BĂNG
+===================================================== */
+
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255, 215, 0, 0.3);
+    animation: shootStar linear infinite;
+    opacity: 0;
+}
+
+.shooting-star::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(to left, rgba(255, 215, 0, 0.4), transparent);
+    transform: translateY(-50%);
+}
+
+.shooting-star:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-duration: 6s;
+    animation-delay: 2s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 20%;
+    left: 30%;
+    animation-duration: 8s;
+    animation-delay: 5s;
+    width: 3px;
+    height: 3px;
+}
+
+.shooting-star:nth-child(3) {
+    top: 5%;
+    left: 60%;
+    animation-duration: 7s;
+    animation-delay: 9s;
+}
+
+@keyframes shootStar {
+    0% {
+        transform: translate(0, 0) rotate(-35deg) scale(0);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    15% {
+        transform: translate(-300px, 200px) rotate(-35deg) scale(1);
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   TEXT GLOW PULSE — NÂNG CẤP
+===================================================== */
+
+.hero-content h1 {
+    animation: textGlowPulse 3s ease-in-out infinite;
+}
+
+.hero-content h2 {
+    animation: textGlowPulse2 4s ease-in-out infinite;
+}
+
+@keyframes textGlowPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 20px rgba(238, 200, 105, 0.15),
+            0 5px 30px rgba(0, 0, 0, 0.75);
+    }
+    50% {
+        text-shadow: 
+            0 0 40px rgba(238, 200, 105, 0.3),
+            0 0 80px rgba(238, 200, 105, 0.05),
+            0 5px 30px rgba(0, 0, 0, 0.75);
+    }
+}
+
+@keyframes textGlowPulse2 {
+    0%, 100% {
+        text-shadow: 
+            0 0 15px rgba(238, 200, 105, 0.08),
+            0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 
+            0 0 30px rgba(238, 200, 105, 0.15),
+            0 0 60px rgba(238, 200, 105, 0.03),
+            0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+/* =====================================================
+   ENTER BUTTON — HIỆU ỨNG HOVER
+===================================================== */
+
+.enter-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.enter-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    transform: scale(0.5);
+}
+
+.enter-button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.enter-button:hover .button-ornament {
+    animation: ornamentSpin 1s ease-in-out infinite;
+}
+
+@keyframes ornamentSpin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.3); }
+}
+
+
+/* =====================================================
+   GOLD LIGHT — NÂNG CẤP (THÊM HIỆU ỨNG DI CHUYỂN)
+===================================================== */
+
+.gold-light {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    right: 15%;
+    top: 10%;
+    z-index: 1;
+    border-radius: 50%;
+    background: rgba(214, 169, 66, 0.08);
+    filter: blur(100px);
+    pointer-events: none;
+    animation: goldLightPulse 6s ease-in-out infinite;
+}
+
+@keyframes goldLightPulse {
+    0%, 100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.3) translate(-20px, -20px);
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   CHARACTER LABEL — HIỆU ỨNG FADE IN
+===================================================== */
+
+.character-label {
+    animation: fadeInUp 1.5s ease 0.5s both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =====================================================
+   TOP BAR & BOTTOM BAR — HIỆU ỨNG FADE
+===================================================== */
+
+.top-bar {
+    animation: fadeInDown 1.5s ease 0.3s both;
+}
+
+.bottom-bar {
+    animation: fadeInUp 1.5s ease 0.8s both;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.frame {
+    animation: frameGlow 3s ease-in-out infinite;
+}
+
+@keyframes frameGlow {
+    0%, 100% {
+        border-color: rgba(214, 169, 66, 0.65);
+        box-shadow: 0 0 20px rgba(214, 169, 66, 0.05);
+    }
+    50% {
+        border-color: rgba(214, 169, 66, 0.85);
+        box-shadow: 0 0 40px rgba(214, 169, 66, 0.12);
+    }
+}
+}
 
 /* =========================================================
    ZHONGLI BACKGROUND
@@ -2003,7 +2369,7 @@ body.archive-mode {
 
 
 /* =========================================================
-   PHONE
+   PHONE — FIX TOÀN BỘ GIAO DIỆN (ENTRANCE + ARCHIVE)
 ========================================================= */
 
 @media (max-width: 650px) {
@@ -2012,1294 +2378,1976 @@ body.archive-mode {
         overflow-x: hidden;
     }
 
+    /* =====================================================
+       ENTRANCE - GIAO DIỆN 1
+    ====================================================== */
+
+    .entrance {
+        min-height: 100vh;
+        height: 100vh;
+    }
+
     .background {
-        background-position: 63% center;
-
-        filter:
-            brightness(0.55)
-            contrast(1.05);
-    }
-
-    .hero-content {
-        left: 9%;
-
-        width: 82vw;
-
-        max-width: none;
-    }
-
-    .hero-content h1 {
-        font-size:
-            clamp(42px, 12vw, 60px);
-
-        letter-spacing: 2px;
-
-        white-space: nowrap;
-    }
-
-    .hero-content h2 {
-        font-size: 22px;
-    }
-
-    .quote-cn {
-        font-size: 16px;
-    }
-
-    .quote-en {
-        font-size: 13px;
-    }
-
-    .enter-button {
-        width: 230px;
-
-        height: 54px;
-    }
-
-    .character-label {
-        display: none;
-    }
-
-    .bottom-center {
-        display: none;
-    }
-
-    .bottom-bar {
-        left: 30px;
-        right: 30px;
-
-        bottom: 30px;
-    }
-
-    .top-bar {
-        left: 30px;
-        right: 30px;
-
-        top: 35px;
+        background-position: 55% center !important;
+        filter: brightness(0.5) contrast(1.05) !important;
     }
 
     .frame {
-        inset: 15px;
+        inset: 10px !important;
     }
 
-
-    /* -----------------------------------------
-       HEADER
-    ----------------------------------------- */
-
-    .archive-page {
-        padding-top: 65px;
+    .frame::before {
+        inset: 4px !important;
     }
 
-    .archive-header {
-        height: 65px;
-
-        padding:
-            0 25px;
+    .top-bar {
+        top: 25px !important;
+        left: 20px !important;
+        right: 20px !important;
+        font-size: 7px !important;
+        letter-spacing: 2px !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
     }
 
-    .archive-logo {
-        font-size: 17px;
-
-        letter-spacing: 3px;
-    }
-
-    .archive-nav {
-        gap: 10px;
-    }
-
-    .archive-nav a {
-        display: none;
-    }
-
-    .archive-nav button {
-        width: 32px;
-        height: 32px;
-    }
-
-
-    /* -----------------------------------------
-       HERO
-    ----------------------------------------- */
-
-    .archive-hero {
-        padding:
-            90px 20px
-            65px;
-    }
-
-    .archive-hero h1 {
-        font-size: 52px;
-    }
-
-    .archive-description {
-        font-size: 11px;
-
-        line-height: 1.8;
-    }
-
-
-    /* -----------------------------------------
-       TAG FILTER
-    ----------------------------------------- */
-
-    .archive-tags {
-        width: 90%;
-
-        margin-bottom: 70px;
-    }
-
-
-    /* -----------------------------------------
-       CHARACTER
-    ----------------------------------------- */
-
-    .character-section {
-        width: 90%;
-    }
-
-    .character-grid {
-        grid-template-columns: 1fr;
-
-        gap: 24px;
-    }
-
-    .character-image {
-        height: 420px;
-    }
-
-    .character-info {
-        padding:
-            27px 25px 26px;
-    }
-
-    .character-number {
-        font-size: 17px;
-    }
-
-    .character-info h3 {
-        font-size: 32px;
-    }
-
-    .character-quote {
-        font-size: 18px;
-
-        margin-bottom: 22px;
-    }
-
-    .character-tags {
-        gap: 8px;
-
-        margin-bottom: 27px;
-    }
-
-    .character-tags span {
-        font-size: 9px;
-
-        padding:
-            7px 11px;
-    }
-
-
-    .character-actions {
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 10px;
-
-        column-gap: 10px;
-    }
-
-    .plot-button {
-        grid-column:
-            1 / -1;
-
-        margin-right: 0;
-    }
-
-    .character-button {
-        height: 51px;
-
-        font-size: 10px;
-
+    .top-left-text,
+    .top-right-text {
+        white-space: normal;
+        text-align: center;
+        font-size: 7px;
         letter-spacing: 2px;
     }
 
-
-    /* -----------------------------------------
-       ABOUT
-    ----------------------------------------- */
-
-    .about-section {
-        width: 90%;
-
-        padding:
-            90px 10px;
+    .hero-content {
+        left: 5% !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 88vw !important;
+        max-width: none !important;
+        padding: 0 5px;
     }
 
-
-    /* -----------------------------------------
-       FEATURES
-    ----------------------------------------- */
-
-    .features-section {
-        width: 90%;
+    .hero-content h1 {
+        font-size: clamp(36px, 10vw, 52px) !important;
+        letter-spacing: 2px !important;
+        white-space: normal !important;
+        line-height: 1 !important;
     }
 
-    .features-grid {
-        grid-template-columns: 1fr;
+    .hero-content h2 {
+        font-size: clamp(16px, 4vw, 22px) !important;
+        letter-spacing: 2px !important;
+        margin-top: 10px !important;
     }
 
-    .feature-card {
-        min-height: 145px;
+    .hero-line {
+        margin: 18px 0 14px !important;
+        gap: 10px !important;
     }
 
+    .hero-line span {
+        width: 40px !important;
+    }
 
-    /* -----------------------------------------
-       FOOTER
-    ----------------------------------------- */
+    .hero-line .hero-diamond {
+        font-size: 7px !important;
+    }
 
-    .archive-footer {
-        padding:
-            30px 25px;
+    .quote-cn {
+        font-size: 14px !important;
+        letter-spacing: 0.5px !important;
+    }
 
-        flex-direction: column;
+    .quote-en {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+    }
 
-        gap: 12px;
+    .enter-button {
+        width: 200px !important;
+        height: 48px !important;
+        font-size: 9px !important;
+        letter-spacing: 3px !important;
+        gap: 14px !important;
+        margin-top: 20px !important;
+    }
 
+    .enter-button .button-ornament {
+        font-size: 7px !important;
+    }
+
+    .click-text {
+        font-size: 7px !important;
+        letter-spacing: 3px !important;
+        margin-top: 10px !important;
+    }
+
+    .character-label {
+        display: none !important;
+    }
+
+    .bottom-bar {
+        left: 20px !important;
+        right: 20px !important;
+        bottom: 18px !important;
+        font-size: 6px !important;
+        letter-spacing: 1px !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .bottom-center {
+        display: block !important;
+        font-size: 6px !important;
+        letter-spacing: 2px !important;
+        order: 0;
+        width: 100%;
         text-align: center;
     }
-}
 
-/* =========================================================
-   CHARACTER CARD — FINAL VISUAL POLISH
-   ========================================================= */
-
-/* ---------------------------------------------------------
-   CARD
-   --------------------------------------------------------- */
-
-.character-card {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    height: 100%;
-    min-height: 720px;
-
-    overflow: hidden;
-
-    border:
-        1px solid
-        rgba(220, 183, 91, 0.34);
-
-    border-radius: 12px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(31, 26, 16, 0.98),
-            rgba(13, 12, 9, 0.99)
-        );
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.22);
-
-    transition:
-        transform 0.45s ease,
-        border-color 0.45s ease,
-        box-shadow 0.45s ease;
-}
-
-.character-card:hover {
-    transform: translateY(-7px);
-
-    border-color:
-        rgba(231, 196, 108, 0.72);
-
-    box-shadow:
-        0 22px 55px rgba(0, 0, 0, 0.46),
-        0 0 35px rgba(214, 169, 66, 0.08);
-}
-
-
-/* =========================================================
-   CHARACTER IMAGE
-   ========================================================= */
-
-.character-image {
-    position: relative;
-
-    width: 100%;
-    height: 410px;
-
-    flex-shrink: 0;
-
-    overflow: hidden;
-
-    background: #11100c;
-}
-
-.character-image img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-    object-position: center;
-
-    transition:
-        transform 0.8s ease,
-        filter 0.8s ease;
-}
-
-.character-card:hover .character-image img {
-    transform: scale(1.045);
-
-    filter:
-        brightness(1.06)
-        contrast(1.02);
-}
-
-.character-image::after {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to bottom,
-            transparent 48%,
-            rgba(8, 7, 5, 0.18) 68%,
-            rgba(8, 7, 5, 0.88) 100%
-        );
-}
-
-
-/* =========================================================
-   CHARACTER INFO
-   ========================================================= */
-
-.character-info {
-    position: relative;
-
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-
-    padding:
-        32px 32px 30px;
-}
-
-
-/* =========================================================
-   NUMBER
-   ========================================================= */
-
-.character-number {
-    margin-bottom: 10px;
-
-    color:
-        rgba(226, 190, 99, 0.68);
-
-    font-family:
-        "Be Vietnam Pro",
-        sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 500;
-
-    letter-spacing: 4px;
-
-    line-height: 1;
-
-    text-shadow:
-        0 0 12px
-        rgba(225, 184, 78, 0.10);
-}
-
-
-/* =========================================================
-   CHARACTER NAME
-   ========================================================= */
-
-.character-info h3 {
-    margin:
-        0 0 0;
-
-    font-family:
-        "Cormorant Garamond",
-        "Times New Roman",
-        serif;
-
-    font-size: 36px;
-
-    line-height: 1.05;
-
-    font-weight: 600;
-
-    letter-spacing: 2px;
-
-    color: #f3d992;
-
-    text-shadow:
-        0 3px 18px
-        rgba(231, 193, 95, 0.10);
-
-    font-variant-ligatures: normal;
-
-    text-rendering: optimizeLegibility;
-}
-
-
-/* =========================================================
-   SMALL DECORATIVE LINE UNDER NAME
-   ========================================================= */
-
-.character-info h3::after {
-    content: "";
-
-    display: block;
-
-    width: 48px;
-    height: 1px;
-
-    margin-top: 16px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #d7b35c,
-            rgba(215, 179, 92, 0.12)
-        );
-}
-
-
-.character-quote {
-    position: relative;
-
-    /* Quan trọng: bỏ min-height cố định */
-    min-height: 0;
-
-    width: 100%;
-
-    margin:
-        22px 0 0;
-
-    padding:
-        2px 0 2px 20px;
-
-    box-sizing: border-box;
-
-    color:
-        rgba(241, 224, 183, 0.78);
-
-    font-family:
-        "Cormorant Garamond",
-        "Times New Roman",
-        serif;
-
-    font-size: 21px;
-
-    font-weight: 400;
-
-    line-height: 1.5;
-
-    letter-spacing: 0.25px;
-
-    font-style: italic;
-
-    overflow-wrap: break-word;
-}
-
-
-/* ---------------------------------------------------------
-   THANH TRANG TRÍ BÊN TRÁI QUOTE
-   --------------------------------------------------------- */
-
-.character-quote::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 4px;
-    bottom: 4px;
-
-    width: 2px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(224, 185, 88, 0),
-            rgba(224, 185, 88, 0.85) 25%,
-            rgba(224, 185, 88, 0.42) 75%,
-            rgba(224, 185, 88, 0)
-        );
-
-    box-shadow:
-        0 0 10px
-        rgba(224, 185, 88, 0.08);
-}
-
-
-/* ---------------------------------------------------------
-   DẤU QUOTE TRANG TRÍ
-   --------------------------------------------------------- */
-
-.character-quote::after {
-    content: "“";
-
-    position: absolute;
-
-    left: 8px;
-    top: -11px;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 30px;
-
-    line-height: 1;
-
-    color:
-        rgba(225, 187, 91, 0.48);
-
-    font-style: normal;
-}
-
-
-/* =========================================================
-   TAGS
-   ========================================================= */
-
-.character-tags {
-    display: flex;
-
-    flex-wrap: wrap;
-
-    align-content: flex-start;
-
-    gap: 9px;
-
-    width: 100%;
-
-    margin-top: 24px;
-    margin-bottom: 30px;
-}
-
-.character-tags span {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding:
-        8px 13px;
-
-    border:
-        1px solid
-        rgba(221, 185, 98, 0.40);
-
-    border-radius: 6px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(214, 169, 66, 0.09),
-            rgba(214, 169, 66, 0.035)
-        );
-
-    color:
-        rgba(241, 216, 158, 0.82);
-
-    font-family:
-        "Be Vietnam Pro",
-        sans-serif;
-
-    font-size: 11px;
-
-    font-weight: 500;
-
-    line-height: 1.2;
-
-    letter-spacing: 1.4px;
-
-    text-transform: uppercase;
-
-    white-space: nowrap;
-
-    transition:
-        color 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease,
-        transform 0.3s ease;
-}
-
-.character-tags span:hover {
-    color: #f6dda0;
-
-    border-color:
-        rgba(233, 196, 105, 0.78);
-
-    background:
-        rgba(214, 169, 66, 0.13);
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   ACTION AREA
-   ========================================================= */
-
-.character-actions {
-    display: grid;
-
-    /*
-       QUAN TRỌNG:
-       2 cột bằng nhau + khoảng cách rõ ràng
-    */
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 22px;
-
-    width: 100%;
-
-    margin-top: auto;
-
-    padding-top: 4px;
-}
-
-
-/* =========================================================
-   PLOT / LINK BUTTON
-   ========================================================= */
-
-.character-button {
-    position: relative;
-
-    width: 100%;
-    min-width: 0;
-
-    height: 54px;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 10px;
-
-    box-sizing: border-box;
-
-    border:
-        1px solid
-        rgba(225, 190, 99, 0.64);
-
-    border-radius: 8px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(214, 169, 66, 0.11),
-            rgba(214, 169, 66, 0.035)
-        );
-
-    color:
-        #f1d995;
-
-    font-family:
-        "Be Vietnam Pro",
-        sans-serif;
-
-    /*
-       TĂNG SIZE CHỮ
-       Nhỏ hơn tên 36px nhưng đủ nổi bật
-    */
-    font-size: 14px;
-
-    font-weight: 600;
-
-    letter-spacing: 2.8px;
-
-    line-height: 1;
-
-    text-decoration: none;
-
-    cursor: pointer;
-
-    overflow: hidden;
-
-    transition:
-        color 0.35s ease,
-        background 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        transform 0.35s ease;
-}
-
-
-/* =========================================================
-   BUTTON ICON
-   ========================================================= */
-
-.character-button .button-icon,
-.character-button i {
-    position: relative;
-
-    z-index: 2;
-
-    flex-shrink: 0;
-
-    font-size: 16px;
-
-    line-height: 1;
-
-    color:
-        #dfbd67;
-
-    transition:
-        transform 0.3s ease,
-        color 0.3s ease;
-}
-
-
-/* =========================================================
-   BUTTON TEXT
-   ========================================================= */
-
-.character-button span {
-    position: relative;
-
-    z-index: 2;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================================
-   PLOT / LINK — KHÔNG CHO CÁI NÀO DÀI HƠN
-   ========================================================= */
-
-.plot-button,
-.link-button {
-    width: 100%;
-    min-width: 0;
-}
-
-
-/* =========================================================
-   SHINE
-   ========================================================= */
-
-.character-button::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 20%,
-            rgba(255, 230, 160, 0.14) 50%,
-            transparent 80%
-        );
-
-    transform:
-        translateX(-120%);
-
-    transition:
-        transform 0.6s ease;
-
-    pointer-events: none;
-}
-
-.character-button:hover::after {
-    transform:
-        translateX(120%);
-}
-
-
-/* =========================================================
-   HOVER
-   ========================================================= */
-
-.character-button:hover {
-    transform:
-        translateY(-3px);
-
-    color:
-        #fff2c3;
-
-    border-color:
-        rgba(239, 205, 118, 0.95);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(214, 169, 66, 0.20),
-            rgba(214, 169, 66, 0.07)
-        );
-
-    box-shadow:
-        0 9px 25px
-        rgba(0, 0, 0, 0.35),
-        0 0 20px
-        rgba(216, 174, 67, 0.12);
-}
-
-.character-button:hover .button-icon,
-.character-button:hover i {
-    color:
-        #f5d98a;
-
-    transform:
-        translateY(-1px)
-        scale(1.12);
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 950px) {
+    .copyright,
+    .rights {
+        font-size: 6px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .gold-light {
+        width: 300px !important;
+        height: 300px !important;
+        right: -20% !important;
+        top: 5% !important;
+        filter: blur(60px) !important;
+    }
+
+    .entrance::before {
+        font-size: 8px !important;
+        letter-spacing: 15px !important;
+        top: 12% !important;
+        right: 5% !important;
+    }
+
+    .dust-particle {
+        width: 2px !important;
+        height: 2px !important;
+    }
+
+
+    /* =====================================================
+       ARCHIVE - GIAO DIỆN 2
+    ====================================================== */
+
+    .archive-page {
+        padding-top: 60px !important;
+    }
+
+    .archive-header {
+        height: 60px !important;
+        padding: 0 14px !important;
+    }
+
+    .archive-logo {
+        font-size: 15px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .archive-nav {
+        gap: 6px !important;
+    }
+
+    .archive-nav a {
+        display: none !important;
+    }
+
+    .archive-nav button {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 13px !important;
+        border-width: 1px !important;
+    }
+
+    .archive-hero {
+        padding: 70px 16px 40px !important;
+    }
+
+    .archive-hero h1 {
+        font-size: 40px !important;
+        line-height: 1.05 !important;
+    }
+
+    .archive-description {
+        font-size: 12px !important;
+        line-height: 1.7 !important;
+    }
+
+    .archive-search {
+        width: 90% !important;
+    }
+
+    .search-box {
+        height: 46px !important;
+    }
+
+    .search-box input {
+        font-size: 13px !important;
+        padding: 0 10px 0 8px !important;
+    }
+
+    .search-icon {
+        font-size: 16px !important;
+        padding-left: 10px !important;
+    }
+
+    .archive-tags {
+        width: 92% !important;
+        gap: 5px !important;
+        margin: 16px auto 40px !important;
+    }
+
+    .tag {
+        padding: 5px 10px !important;
+        font-size: 7.5px !important;
+        letter-spacing: 1px !important;
+    }
+
+
+    /* =====================================================
+       CHARACTER - FIX ẢNH BỊ CẮT + BỐ CỤC
+    ====================================================== */
 
     .character-card {
-        min-height: 680px;
+        min-height: unset !important;
+        height: auto !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
     }
 
     .character-image {
-        height: 350px;
+        height: 280px !important;
+        flex-shrink: 0 !important;
+        width: 100% !important;
+        overflow: hidden !important;
     }
 
-    .character-info h3 {
-        font-size: 34px;
-    }
-
-    .character-quote {
-        font-size: 20px;
-    }
-
-    .character-button {
-        font-size: 13px;
-    }
-
-    .character-actions {
-        gap: 18px;
-    }
-}
-
-
-/* =========================================================
-   PHONE
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-    .character-card {
-        min-height: 0;
-    }
-
-    .character-image {
-        height: 420px;
+    .character-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
     }
 
     .character-info {
-        padding:
-            28px 24px 26px;
+        padding: 18px 16px 16px !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
     .character-number {
-        font-size: 11px;
-        letter-spacing: 3.5px;
+        font-size: 12px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 4px !important;
     }
 
     .character-info h3 {
-        font-size: 34px;
+        font-size: 26px !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .character-info h3::after {
+        width: 32px !important;
+        margin-top: 6px !important;
     }
 
     .character-quote {
-        margin-top: 22px;
-
-        padding-left: 18px;
-
-        font-size: 20px;
-
-        line-height: 1.5;
+        font-size: 15px !important;
+        padding-left: 12px !important;
+        margin-top: 10px !important;
+        line-height: 1.4 !important;
+        border-left-width: 2px !important;
     }
 
     .character-tags {
-        margin-top: 23px;
-
-        margin-bottom: 28px;
-
-        gap: 8px;
+        gap: 5px !important;
+        margin-top: 12px !important;
+        margin-bottom: 14px !important;
     }
 
     .character-tags span {
-        font-size: 10px;
-
-        padding:
-            8px 11px;
+        font-size: 8.5px !important;
+        padding: 4px 8px !important;
+        letter-spacing: 0.8px !important;
+        min-height: 24px !important;
     }
 
-    /*
-       Mobile:
-       Plot ở hàng trên,
-       Link 1 + Link 2 nếu có sẽ xuống dưới.
-    */
-
     .character-actions {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+        grid-template-columns: unset !important;
+        margin-top: auto !important;
+        padding-top: 4px !important;
+    }
 
-        gap: 14px;
+    .character-actions .character-button,
+    .character-actions .plot-button,
+    .character-actions .link-button {
+        width: 100% !important;
+        min-width: unset !important;
+        height: 44px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        padding: 0 10px !important;
+        margin: 0 !important;
+        border-radius: 6px !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .character-actions .character-button .button-icon,
+    .character-actions .character-button i {
+        font-size: 13px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .character-actions .character-button span {
+        font-size: 11px !important;
+        white-space: nowrap !important;
     }
 
     .plot-button {
-        grid-column: 1 / -1;
+        grid-column: unset !important;
+        margin-right: 0 !important;
     }
 
-    .character-button {
-        height: 52px;
 
-        font-size: 13px;
-
-        letter-spacing: 2.3px;
+    /* FIX RIÊNG CARD 007/008/009 (3 NÚT) */
+    .character-card:nth-child(7) .character-actions,
+    .character-card:nth-child(8) .character-actions,
+    .character-card:nth-child(9) .character-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: unset !important;
+        gap: 8px !important;
+        width: 100% !important;
     }
+
+    .character-card:nth-child(7) .character-actions .character-button,
+    .character-card:nth-child(8) .character-actions .character-button,
+    .character-card:nth-child(9) .character-actions .character-button {
+        width: 100% !important;
+        min-width: unset !important;
+        height: 44px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1.5px !important;
+        padding: 0 10px !important;
+        white-space: nowrap !important;
+        border-radius: 6px !important;
+    }
+
+
+    /* =====================================================
+       FEATURES
+    ====================================================== */
+
+    .features-section {
+        width: 92% !important;
+        margin: 30px auto 40px !important;
+        padding: 0 !important;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-top: 16px !important;
+    }
+
+    .feature-card {
+        min-height: 120px !important;
+        padding: 18px 14px 14px !important;
+        gap: 4px !important;
+        border-radius: 12px !important;
+    }
+
+    .feature-icon {
+        font-size: 26px !important;
+    }
+
+    .feature-title {
+        font-size: 10px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .feature-desc {
+        font-size: 9px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+
+    /* =====================================================
+       FEATURE MODAL
+    ====================================================== */
+
+    .feature-modal-content {
+        padding: 18px 14px 22px !important;
+        max-width: 100% !important;
+        border-radius: 16px !important;
+    }
+
+    .feature-modal-title {
+        font-size: 20px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .feature-modal-body {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+
+    .feature-modal-icon {
+        font-size: 32px !important;
+    }
+
+    .feature-modal-close {
+        font-size: 18px !important;
+        top: 8px !important;
+        right: 12px !important;
+    }
+
+
+    /* =====================================================
+       QUICK LINKS
+    ====================================================== */
+
+    .quick-links-section {
+        width: 92% !important;
+        margin: 25px auto 35px !important;
+        padding: 0 !important;
+    }
+
+    .quick-row {
+        margin-bottom: 20px !important;
+    }
+
+    .quick-row-header {
+        padding: 10px 14px !important;
+        margin-bottom: 10px !important;
+        border-radius: 10px !important;
+    }
+
+    .quick-row-icon {
+        font-size: 22px !important;
+    }
+
+    .quick-row-title {
+        font-size: 13px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .quick-row-desc {
+        font-size: 9px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .quick-row-grid {
+        gap: 8px !important;
+    }
+
+    /* Emergency: 5 cột → 2 cột trên mobile */
+    .emergency-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    /* Entertainment: 3 cột → 1 cột trên mobile */
+    .entertainment-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+
+    .quick-link-card {
+        padding: 12px 10px 10px !important;
+        gap: 2px !important;
+        border-radius: 10px !important;
+    }
+
+    .quick-link-icon {
+        font-size: 20px !important;
+    }
+
+    .quick-link-title {
+        font-size: 9.5px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .quick-link-desc {
+        font-size: 8px !important;
+        letter-spacing: 0.3px !important;
+    }
+
+    .quick-copy-preview {
+        font-size: 9px !important;
+        padding: 5px 8px !important;
+        max-height: 42px !important;
+        line-height: 1.4 !important;
+    }
+
+    .quick-copy-btn {
+        font-size: 8.5px !important;
+        padding: 5px 10px !important;
+        min-width: 70px !important;
+        height: 32px !important;
+    }
+
+    .quick-link-field {
+        font-size: 8.5px !important;
+        padding: 4px 8px !important;
+        height: 32px !important;
+    }
+
+    .quick-link-save {
+        font-size: 8px !important;
+        padding: 4px 8px !important;
+        height: 32px !important;
+    }
+
+
+    /* =====================================================
+       FEEDBACK
+    ====================================================== */
+
+    .feedback-row {
+        max-width: 100% !important;
+        padding: 0 2px !important;
+    }
+
+    .feedback-grid {
+        max-width: 100% !important;
+    }
+
+    .feedback-content {
+        gap: 10px !important;
+        align-items: center !important;
+    }
+
+    .feedback-icon {
+        font-size: 22px !important;
+    }
+
+    .feedback-title {
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .feedback-desc {
+        font-size: 8.5px !important;
+    }
+
+    .feedback-field {
+        font-size: 9px !important;
+        padding: 5px 10px !important;
+        min-width: 100% !important;
+        height: 34px !important;
+    }
+
+    .feedback-save-btn {
+        font-size: 8.5px !important;
+        padding: 5px 10px !important;
+        width: 100% !important;
+        height: 34px !important;
+    }
+
+    .quick-feedback-link {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    .site-footer {
+        padding: 16px 12px !important;
+        margin-top: 25px !important;
+    }
+
+    .footer-inner {
+        flex-direction: column !important;
+        gap: 6px !important;
+        text-align: center !important;
+    }
+
+    .footer-center {
+        order: -1 !important;
+        gap: 4px !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .footer-name {
+        font-size: 12px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .footer-copy {
+        font-size: 7.5px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .footer-logo {
+        font-size: 9px !important;
+    }
+
+    .footer-divider-line {
+        width: 14px !important;
+    }
+
+    .footer-social-link {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 10px !important;
+    }
+
+
+    /* =====================================================
+       STAR CONTAINER
+    ====================================================== */
+
+    .star-container .star {
+        font-size: 8px !important;
+    }
+
+    .star.big {
+        font-size: 14px !important;
+    }
+
+    .star.tiny {
+        font-size: 3.5px !important;
+    }
+
+
+    /* =====================================================
+       MUSIC PLAYER
+    ====================================================== */
+
+    .music-player-overlay {
+        bottom: 60px !important;
+        right: 8px !important;
+        width: 250px !important;
+        padding: 16px 14px 14px !important;
+        border-radius: 16px !important;
+    }
+
+    .music-player-overlay #vinylDisc {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .music-player-overlay #currentTrackName {
+        font-size: 13px !important;
+    }
+
+    .music-player-overlay #playPauseBtn {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 18px !important;
+    }
+
+
+    /* =====================================================
+       SPARKLE TRONG CARD - mobile giảm bớt để tránh lag
+    ====================================================== */
+
+    .card-sparkles .sparkle-dot {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       RIPPLE EFFECT - mobile tắt để tránh lag
+    ====================================================== */
+
+    .ripple {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       CHARACTER CARD SOFT BLING - mobile giảm
+    ====================================================== */
+
+    .character-card::before {
+        opacity: 0.2 !important;
+        animation-duration: 6s !important;
+    }
+
+    .character-card::after {
+        box-shadow: inset 0 0 20px rgba(224, 186, 91, 0.01) !important;
+    }
+
+
+    /* =====================================================
+       TÀI XỈU MOBILE
+    ====================================================== */
+
+    #betAmountInput {
+        width: 70px !important;
+        font-size: 13px !important;
+        padding: 4px 6px !important;
+        height: 36px !important;
+    }
+
+    .bet-btn {
+        font-size: 13px !important;
+        padding: 8px 18px !important;
+        height: 40px !important;
+    }
+
+
+    /* =====================================================
+       IELTS MOBILE
+    ====================================================== */
+
+    #ieltsInput {
+        min-height: 60px !important;
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+    }
+
+    .ielts-option {
+        font-size: 11px !important;
+        padding: 7px 12px !important;
+    }
+
+
+    /* =====================================================
+       TAROT MOBILE
+    ====================================================== */
+
+    .feature-modal-content .tarot-emoji {
+        font-size: 40px !important;
+    }
+
+
+    /* =====================================================
+       BUTTON CLICK EFFECT - mobile giảm
+    ====================================================== */
+
+    .character-button:active {
+        transform: translateY(1px) scale(0.98) !important;
+    }
+
+    @keyframes button-click {
+        0% { transform: scale(1); }
+        30% { transform: scale(0.97); }
+        100% { transform: scale(1); }
+    }
+
 }
 
+
+
 /* =========================================================
-   FIX RIÊNG CARD 007 / 008 / 009
+   PHONE SMALL — 540px (ĐIỆN THOẠI NHỎ)
 ========================================================= */
 
-.character-card:nth-child(7) .character-actions,
-.character-card:nth-child(8) .character-actions,
-.character-card:nth-child(9) .character-actions {
-    display: grid;
+@media (max-width: 540px) {
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    /* =====================================================
+       ENTRANCE - GIAO DIỆN 1
+    ====================================================== */
 
-    gap: 18px;
+    .entrance {
+        min-height: 100vh;
+        height: 100vh;
+    }
 
+    .background {
+        background-position: 50% center !important;
+        filter: brightness(0.45) contrast(1.05) !important;
+    }
+
+    .frame {
+        inset: 8px !important;
+    }
+
+    .frame::before {
+        inset: 3px !important;
+    }
+
+    .top-bar {
+        top: 18px !important;
+        left: 14px !important;
+        right: 14px !important;
+        font-size: 6px !important;
+        letter-spacing: 1.5px !important;
+        gap: 2px;
+    }
+
+    .top-left-text,
+    .top-right-text {
+        font-size: 6px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-content {
+        left: 4% !important;
+        width: 92vw !important;
+        top: 48% !important;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(30px, 9vw, 42px) !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .hero-content h2 {
+        font-size: clamp(14px, 3.5vw, 18px) !important;
+        letter-spacing: 1.5px !important;
+        margin-top: 6px !important;
+    }
+
+    .hero-line {
+        margin: 12px 0 10px !important;
+        gap: 8px !important;
+    }
+
+    .hero-line span {
+        width: 30px !important;
+    }
+
+    .quote-cn {
+        font-size: 12px !important;
+    }
+
+    .quote-en {
+        font-size: 11px !important;
+    }
+
+    .enter-button {
+        width: 170px !important;
+        height: 42px !important;
+        font-size: 8px !important;
+        letter-spacing: 2px !important;
+        gap: 10px !important;
+        margin-top: 14px !important;
+    }
+
+    .enter-button .button-ornament {
+        font-size: 6px !important;
+    }
+
+    .click-text {
+        font-size: 6px !important;
+        letter-spacing: 2px !important;
+        margin-top: 8px !important;
+    }
+
+    .bottom-bar {
+        left: 14px !important;
+        right: 14px !important;
+        bottom: 12px !important;
+        font-size: 5.5px !important;
+        gap: 2px;
+    }
+
+    .bottom-center {
+        font-size: 5.5px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .copyright,
+    .rights {
+        font-size: 5.5px !important;
+    }
+
+    .gold-light {
+        width: 200px !important;
+        height: 200px !important;
+        right: -30% !important;
+        filter: blur(40px) !important;
+    }
+
+    .entrance::before {
+        font-size: 6px !important;
+        letter-spacing: 10px !important;
+        top: 10% !important;
+        right: 3% !important;
+    }
+
+
+    /* =====================================================
+       ARCHIVE - GIAO DIỆN 2
+    ====================================================== */
+
+    .archive-page {
+        padding-top: 55px !important;
+    }
+
+    .archive-header {
+        height: 55px !important;
+        padding: 0 12px !important;
+    }
+
+    .archive-logo {
+        font-size: 13px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .archive-nav {
+        gap: 4px !important;
+    }
+
+    .archive-nav button {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 11px !important;
+    }
+
+    .archive-hero {
+        padding: 50px 12px 30px !important;
+    }
+
+    .archive-hero h1 {
+        font-size: 32px !important;
+        line-height: 1.05 !important;
+    }
+
+    .archive-description {
+        font-size: 11px !important;
+        line-height: 1.6 !important;
+    }
+
+    .search-box {
+        height: 40px !important;
+    }
+
+    .search-box input {
+        font-size: 12px !important;
+        padding: 0 8px !important;
+    }
+
+    .search-icon {
+        font-size: 14px !important;
+        padding-left: 8px !important;
+    }
+
+    .archive-tags {
+        gap: 4px !important;
+        margin: 12px auto 30px !important;
+    }
+
+    .tag {
+        padding: 4px 8px !important;
+        font-size: 6.5px !important;
+        letter-spacing: 0.8px !important;
+        border-radius: 4px !important;
+    }
+
+    .section-heading h2 {
+        font-size: 22px !important;
+    }
+
+    .section-heading .section-label {
+        font-size: 8px !important;
+        letter-spacing: 3px !important;
+    }
+
+    .character-grid {
+        gap: 14px !important;
+    }
+
+
+    /* =====================================================
+       CHARACTER - FIX ẢNH BỊ CẮT (540px)
+    ====================================================== */
+
+    .character-card {
+        min-height: unset !important;
+        height: auto !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+    }
+
+    .character-image {
+        height: 220px !important;
+        flex-shrink: 0 !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .character-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+    }
+
+    .character-info {
+        padding: 14px 12px 14px !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .character-number {
+        font-size: 10px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .character-info h3 {
+        font-size: 22px !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .character-info h3::after {
+        width: 28px !important;
+        margin-top: 6px !important;
+    }
+
+    .character-quote {
+        font-size: 13px !important;
+        padding-left: 10px !important;
+        margin-top: 8px !important;
+        margin-bottom: 0 !important;
+        border-left-width: 1.5px !important;
+    }
+
+    .character-quote::after {
+        font-size: 22px !important;
+        left: 5px !important;
+        top: -8px !important;
+    }
+
+    .character-tags {
+        gap: 4px !important;
+        margin-top: 10px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .character-tags span {
+        font-size: 7px !important;
+        padding: 3px 6px !important;
+        letter-spacing: 0.5px !important;
+        min-height: 20px !important;
+        border-radius: 4px !important;
+    }
+
+    .character-actions {
+        gap: 6px !important;
+        margin-top: 2px !important;
+    }
+
+    .character-actions .character-button,
+    .character-actions .plot-button,
+    .character-actions .link-button {
+        height: 36px !important;
+        font-size: 10px !important;
+        letter-spacing: 1.5px !important;
+        padding: 0 8px !important;
+        border-radius: 5px !important;
+        gap: 4px !important;
+    }
+
+    .character-actions .character-button .button-icon,
+    .character-actions .character-button i {
+        font-size: 12px !important;
+    }
+
+    .character-actions .character-button span {
+        font-size: 10px !important;
+    }
+
+
+    /* FIX CARD 007/008/009 (3 NÚT) 540px */
+    .character-card:nth-child(7) .character-actions .character-button,
+    .character-card:nth-child(8) .character-actions .character-button,
+    .character-card:nth-child(9) .character-actions .character-button {
+        height: 36px !important;
+        font-size: 10px !important;
+        padding: 0 8px !important;
+    }
+
+
+    /* =====================================================
+       FEATURES - 540px
+    ====================================================== */
+
+    .features-section {
+        margin: 20px auto 30px !important;
+    }
+
+    .features-grid {
+        gap: 8px !important;
+        margin-top: 12px !important;
+    }
+
+    .feature-card {
+        min-height: 100px !important;
+        padding: 14px 10px 12px !important;
+        border-radius: 10px !important;
+        gap: 2px !important;
+    }
+
+    .feature-icon {
+        font-size: 22px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .feature-title {
+        font-size: 9px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .feature-desc {
+        font-size: 8px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+
+    /* =====================================================
+       FEATURE MODAL - 540px
+    ====================================================== */
+
+    .feature-modal-content {
+        padding: 14px 12px 18px !important;
+        border-radius: 14px !important;
+        max-width: 100% !important;
+    }
+
+    .feature-modal-title {
+        font-size: 18px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .feature-modal-body {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+
+    .feature-modal-icon {
+        font-size: 28px !important;
+    }
+
+    .feature-modal-close {
+        font-size: 16px !important;
+        top: 6px !important;
+        right: 10px !important;
+    }
+
+
+    /* =====================================================
+       QUICK LINKS - 540px
+    ====================================================== */
+
+    .quick-links-section {
+        margin: 20px auto 30px !important;
+    }
+
+    .quick-row {
+        margin-bottom: 16px !important;
+    }
+
+    .quick-row-header {
+        padding: 8px 10px !important;
+        margin-bottom: 8px !important;
+        border-radius: 8px !important;
+    }
+
+    .quick-row-icon {
+        font-size: 18px !important;
+    }
+
+    .quick-row-title {
+        font-size: 12px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .quick-row-desc {
+        font-size: 8px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .quick-row-grid {
+        gap: 6px !important;
+    }
+
+    .emergency-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+    }
+
+    .entertainment-grid {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+    }
+
+    .quick-link-card {
+        padding: 10px 8px 8px !important;
+        border-radius: 8px !important;
+    }
+
+    .quick-link-icon {
+        font-size: 18px !important;
+    }
+
+    .quick-link-title {
+        font-size: 8.5px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .quick-link-desc {
+        font-size: 7px !important;
+        letter-spacing: 0.3px !important;
+    }
+
+    .quick-copy-preview {
+        font-size: 8px !important;
+        padding: 4px 6px !important;
+        max-height: 36px !important;
+        border-radius: 4px !important;
+    }
+
+    .quick-copy-btn {
+        font-size: 7.5px !important;
+        padding: 4px 8px !important;
+        min-width: 60px !important;
+        height: 28px !important;
+        border-radius: 4px !important;
+    }
+
+    .quick-link-go {
+        font-size: 8px !important;
+        padding: 6px 8px !important;
+        border-radius: 4px !important;
+    }
+
+
+    /* =====================================================
+       FEEDBACK - 540px
+    ====================================================== */
+
+    .feedback-header {
+        padding: 10px 12px !important;
+    }
+
+    .feedback-header .quick-row-icon {
+        font-size: 18px !important;
+    }
+
+    .feedback-header .quick-row-title {
+        font-size: 12px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .feedback-header .quick-row-desc {
+        font-size: 8px !important;
+    }
+
+    .feedback-card {
+        padding: 12px 12px 10px !important;
+        border-radius: 10px !important;
+    }
+
+    .feedback-content {
+        gap: 8px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .feedback-icon {
+        font-size: 20px !important;
+    }
+
+    .feedback-title {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .feedback-desc {
+        font-size: 7.5px !important;
+    }
+
+    .feedback-field {
+        font-size: 8px !important;
+        padding: 4px 8px !important;
+        height: 30px !important;
+        border-radius: 6px !important;
+    }
+
+    .feedback-save-btn {
+        font-size: 7.5px !important;
+        padding: 4px 8px !important;
+        height: 30px !important;
+        border-radius: 6px !important;
+    }
+
+    #feedbackGoLink {
+        font-size: 8px !important;
+        padding: 6px 8px !important;
+        border-radius: 6px !important;
+    }
+
+
+    /* =====================================================
+       FOOTER - 540px
+    ====================================================== */
+
+    .site-footer {
+        padding: 14px 10px !important;
+        margin-top: 20px !important;
+    }
+
+    .footer-name {
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .footer-copy {
+        font-size: 6.5px !important;
+        letter-spacing: 0.8px !important;
+    }
+
+    .footer-logo {
+        font-size: 8px !important;
+    }
+
+    .footer-divider-line {
+        width: 12px !important;
+    }
+
+    .footer-social-link {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 9px !important;
+    }
+
+
+    /* =====================================================
+       STAR CONTAINER - 540px
+    ====================================================== */
+
+    .star-container .star {
+        font-size: 6px !important;
+    }
+
+    .star.big {
+        font-size: 10px !important;
+    }
+
+    .star.tiny {
+        font-size: 3px !important;
+    }
+
+
+    /* =====================================================
+       MUSIC PLAYER - 540px
+    ====================================================== */
+
+    .music-player-overlay {
+        bottom: 50px !important;
+        right: 6px !important;
+        width: 200px !important;
+        padding: 12px 10px 10px !important;
+        border-radius: 12px !important;
+    }
+
+    .music-player-overlay #vinylDisc {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .music-player-overlay #currentTrackName {
+        font-size: 11px !important;
+    }
+
+    .music-player-overlay #playPauseBtn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 14px !important;
+    }
+
+    .music-player-overlay #prevTrackBtn,
+    .music-player-overlay #nextTrackBtn {
+        font-size: 14px !important;
+        padding: 4px 6px !important;
+    }
+
+    .music-player-overlay #volumeSlider {
+        height: 2px !important;
+    }
+
+
+    /* =====================================================
+       CARD SOFT BLING - 540px
+    ====================================================== */
+
+    .character-card::before {
+        opacity: 0.1 !important;
+        animation-duration: 8s !important;
+        width: 40% !important;
+        height: 120% !important;
+    }
+
+    .character-card::after {
+        box-shadow: inset 0 0 15px rgba(224, 186, 91, 0.01) !important;
+    }
+
+
+    /* =====================================================
+       SPARKLE - ẨN HOÀN TOÀN TRÊN MOBILE NHỎ
+    ====================================================== */
+
+    .card-sparkles .sparkle-dot {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       BUTTON RIPPLE - TẮT
+    ====================================================== */
+
+    .ripple {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       TÀI XỈU - 540px
+    ====================================================== */
+
+    #betAmountInput {
+        width: 60px !important;
+        font-size: 12px !important;
+        padding: 3px 4px !important;
+        height: 32px !important;
+    }
+
+    .bet-btn {
+        font-size: 11px !important;
+        padding: 6px 14px !important;
+        height: 34px !important;
+        border-radius: 8px !important;
+    }
+
+
+    /* =====================================================
+       IELTS - 540px
+    ====================================================== */
+
+    #ieltsInput {
+        min-height: 50px !important;
+        font-size: 10px !important;
+        padding: 6px 8px !important;
+    }
+
+    .ielts-option {
+        font-size: 10px !important;
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+    }
+
+
+    /* =====================================================
+       TAROT - 540px
+    ====================================================== */
+
+    .feature-modal-body .tarot-emoji {
+        font-size: 36px !important;
+    }
+
+
+    /* =====================================================
+       TEXT - ĐIỀU CHỈNH CHUNG
+    ====================================================== */
+
+    .archive-description,
+    .feature-desc,
+    .quick-link-desc,
+    .feedback-desc {
+        word-break: break-word;
+    }
+
+
+    /* =====================================================
+       SCROLLBAR - ẨN TRÊN MOBILE
+    ====================================================== */
+
+    .archive-page::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .archive-page::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .archive-page::-webkit-scrollbar-thumb {
+        background: rgba(214, 169, 66, 0.2);
+        border-radius: 4px;
+    }
+
+}
+
+
+/* =========================================================
+   GOLD DUST — BỤI VÀNG BAY TRÊN ENTRANCE
+========================================================= */
+
+.dust-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-}
-
-.character-card:nth-child(7) .character-button,
-.character-card:nth-child(8) .character-button,
-.character-card:nth-child(9) .character-button {
-    min-width: 0;
-
-    width: 100%;
-
-    white-space: nowrap;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-/* =========================================================
-   CLICK EFFECT — CHARACTER BUTTON
-========================================================= */
-
-.character-button {
-    position: relative;
-
-    transition:
-        transform 0.12s ease,
-        box-shadow 0.12s ease,
-        background 0.2s ease;
-}
-
-/* Khi đang nhấn */
-.character-button:active {
-    transform: translateY(2px) scale(0.97);
-
-    background:
-        rgba(214, 169, 66, 0.22);
-
-    border-color:
-        rgba(242, 210, 125, 1);
-
-    box-shadow:
-        0 0 12px rgba(214, 169, 66, 0.25),
-        inset 0 0 15px rgba(214, 169, 66, 0.12);
-}
-
-
-/* Ánh sáng lóe khi click */
-
-.character-button.clicked {
-    animation: button-click 0.35s ease;
-}
-
-
-@keyframes button-click {
-
-    0% {
-        transform: scale(1);
-        box-shadow:
-            0 0 0 rgba(214, 169, 66, 0);
-    }
-
-    35% {
-        transform: scale(0.96);
-
-        box-shadow:
-            0 0 22px rgba(230, 190, 90, 0.35);
-    }
-
-    100% {
-        transform: scale(1);
-
-        box-shadow:
-            0 0 0 rgba(214, 169, 66, 0);
-    }
-
-}
-
-/* =========================================================
-   CHARACTER CARD — SOFT BLING
-   Ánh sáng vàng di chuyển liên tục, tốc độ vừa phải
-========================================================= */
-
-.character-card {
-    position: relative;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
     overflow: hidden;
 }
 
-
-/* ---------------------------------------------------------
-   LỚP ÁNH SÁNG CHUYỂN ĐỘNG
---------------------------------------------------------- */
-
-.character-card::before {
-
-    content: "";
-
+.dust-particle {
     position: absolute;
-
-    top: -40%;
-    left: -70%;
-
-    width: 55%;
-    height: 180%;
-
-    pointer-events: none;
-
-    z-index: 5;
-
-    background:
-        linear-gradient(
-            105deg,
-
-            transparent 0%,
-
-            rgba(255, 235, 170, 0.00) 35%,
-
-            rgba(255, 235, 170, 0.045) 45%,
-
-            rgba(255, 235, 170, 0.10) 50%,
-
-            rgba(255, 235, 170, 0.045) 55%,
-
-            rgba(255, 235, 170, 0.00) 65%,
-
-            transparent 100%
-        );
-
-    transform: rotate(8deg);
-
-    /*
-       9s → 3.8s
-
-       Vẫn đủ chậm để sang,
-       nhưng ánh sáng sẽ quay lại thường xuyên hơn.
-    */
-
-    animation:
-        card-soft-glow 3.8s ease-in-out infinite;
-
-    opacity: 0.7;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0));
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255, 215, 0, 0.1);
+    animation: dustFloat linear infinite;
+    opacity: 0;
 }
 
-
-/* =========================================================
-   DI CHUYỂN ÁNH SÁNG
-========================================================= */
-
-@keyframes card-soft-glow {
-
-    /* Bắt đầu ngoài mép trái */
-
+@keyframes dustFloat {
     0% {
-
-        left: -70%;
-
+        transform: translateY(0) translateX(0) scale(0);
         opacity: 0;
-
     }
-
-
-    /* Ánh sáng bắt đầu ló vào */
-
-    8% {
-
-        opacity: 0.28;
-
+    20% {
+        opacity: 0.8;
+        transform: translateY(-20px) translateX(10px) scale(1);
     }
-
-
-    /* Đi vào card */
-
-    22% {
-
-        opacity: 0.55;
-
+    80% {
+        opacity: 0.6;
+        transform: translateY(-60px) translateX(-5px) scale(0.8);
     }
-
-
-    /* Khu vực sáng nhất */
-
-    42% {
-
-        opacity: 0.72;
-
-    }
-
-
-    /* Tiếp tục lướt qua */
-
-    58% {
-
-        opacity: 0.65;
-
-    }
-
-
-    /* Ra khỏi vùng trung tâm */
-
-    76% {
-
-        opacity: 0.38;
-
-    }
-
-
-    /* Gần ra khỏi card */
-
-    90% {
-
-        opacity: 0.12;
-
-    }
-
-
-    /* Biến mất hoàn toàn */
-
     100% {
-
-        left: 125%;
-
+        transform: translateY(-80px) translateX(15px) scale(0);
         opacity: 0;
-
     }
-
-}
-
-
-/* ---------------------------------------------------------
-   ÁNH SÁNG MỀM Ở VIỀN CARD
---------------------------------------------------------- */
-
-.character-card::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 4;
-
-    border-radius: inherit;
-
-    box-shadow:
-
-        inset 0 0 35px
-        rgba(224, 186, 91, 0.025),
-
-        inset 0 0 80px
-        rgba(224, 186, 91, 0.015);
-
-    animation:
-        card-breath 5s ease-in-out infinite;
 }
 
 
 /* =========================================================
-   CARD "THỞ" RẤT NHẸ
+   TEXT GLOW PULSE
 ========================================================= */
 
-@keyframes card-breath {
+.hero-content h1 {
+    animation: textGlowPulse 3s ease-in-out infinite;
+}
 
-    0%,
-    100% {
-
-        box-shadow:
-
-            inset 0 0 35px
-            rgba(224, 186, 91, 0.02),
-
-            inset 0 0 80px
-            rgba(224, 186, 91, 0.01);
-
+@keyframes textGlowPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 20px rgba(238, 200, 105, 0.15),
+            0 5px 30px rgba(0, 0, 0, 0.75);
     }
-
-
     50% {
-
-        box-shadow:
-
-            inset 0 0 45px
-            rgba(224, 186, 91, 0.045),
-
-            inset 0 0 90px
-            rgba(224, 186, 91, 0.02);
-
+        text-shadow: 
+            0 0 40px rgba(238, 200, 105, 0.3),
+            0 0 80px rgba(238, 200, 105, 0.05),
+            0 5px 30px rgba(0, 0, 0, 0.75);
     }
-
 }
 
 
-/* ---------------------------------------------------------
-   NỘI DUNG CARD NẰM TRÊN HIỆU ỨNG
---------------------------------------------------------- */
+/* =========================================================
+   QUICK LINKS — LỆNH CẤP CỨU & GIẢI TRÍ
+========================================================= */
 
-.character-card > * {
-
+.quick-links-section {
     position: relative;
-
     z-index: 2;
-
+    width: min(1100px, 92%);
+    margin: 60px auto 100px;
+    padding: 0 10px;
 }
+
+/* =====================================================
+   HÀNG
+===================================================== */
+
+.quick-row {
+    margin-bottom: 45px;
+}
+
+.quick-row:last-child {
+    margin-bottom: 0;
+}
+
+.quick-row-header {
+    text-align: center;
+    padding: 16px 20px;
+    border-radius: 14px;
+    background: rgba(20, 17, 11, 0.5);
+    border: 1px solid rgba(214, 169, 66, 0.1);
+    margin-bottom: 16px;
+    backdrop-filter: blur(4px);
+}
+
+.quick-row-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.quick-row-title {
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 16px;
+    letter-spacing: 4px;
+    font-weight: 600;
+    color: #f0d68d;
+    margin: 0;
+}
+
+.quick-row-desc {
+    font-size: 11px;
+    color: rgba(233, 210, 146, 0.3);
+    letter-spacing: 1px;
+    margin: 2px 0 0;
+}
+
+.quick-row-grid {
+    display: grid;
+    gap: 14px;
+}
+
+/* Cấp cứu: 5 cột */
+.emergency-grid {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/* Giải trí: 3 cột */
+.entertainment-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* =====================================================
+   CARD CHUNG
+===================================================== */
+
+.quick-link-card {
+    position: relative;
+    padding: 16px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    border: 1px solid rgba(214, 169, 66, 0.08);
+    border-radius: 12px;
+    background: rgba(20, 17, 11, 0.4);
+    backdrop-filter: blur(4px);
+    text-align: center;
+    transition: all 0.35s ease;
+}
+
+.quick-link-card:hover {
+    background: rgba(38, 31, 17, 0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+.quick-link-icon {
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.quick-link-title {
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    color: #f0d68d;
+    margin: 1px 0 0;
+}
+
+.quick-link-desc {
+    font-size: 9px;
+    color: rgba(233, 210, 146, 0.25);
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+/* =====================================================
+   CẤP CỨU - TONE ĐỎ NÂU
+===================================================== */
+
+.emergency-row .quick-row-header {
+    border-color: rgba(180, 80, 60, 0.2);
+    background: rgba(180, 80, 60, 0.06);
+}
+
+.emergency-row .quick-row-title {
+    color: #e8b4a0;
+}
+
+.emergency-row .quick-row-desc {
+    color: rgba(180, 80, 60, 0.3);
+}
+
+.emergency-row .quick-link-card {
+    border-color: rgba(180, 80, 60, 0.08);
+    background: rgba(20, 17, 11, 0.4);
+}
+
+.emergency-row .quick-link-card:hover {
+    border-color: rgba(180, 80, 60, 0.25);
+    background: rgba(40, 25, 20, 0.6);
+    box-shadow: 0 6px 25px rgba(180, 80, 60, 0.06);
+}
+
+.emergency-row .quick-link-title {
+    color: #e8b4a0;
+}
+
+.emergency-row .quick-link-desc {
+    color: rgba(180, 80, 60, 0.25);
+}
+
+.emergency-card .quick-copy-area {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.emergency-card .quick-copy-btn {
+    padding: 6px 14px;
+    background: rgba(180, 80, 60, 0.08);
+    border: 1px solid rgba(180, 80, 60, 0.12);
+    border-radius: 6px;
+    color: rgba(200, 150, 130, 0.5);
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.emergency-card .quick-copy-btn:hover {
+    background: rgba(180, 80, 60, 0.15);
+    border-color: rgba(180, 80, 60, 0.25);
+    color: #e8b4a0;
+    transform: scale(1.02);
+}
+
+.emergency-card .quick-copy-btn.copied {
+    background: rgba(123, 237, 159, 0.12);
+    border-color: rgba(123, 237, 159, 0.2);
+    color: #7bed9f;
+}
+
+.emergency-card .quick-copy-feedback {
+    font-size: 9px;
+    color: #7bed9f;
+    margin-top: 2px;
+}
+
+/* =====================================================
+   GIẢI TRÍ - TONE XANH RÊU/NGỌC
+===================================================== */
+
+.entertainment-row .quick-row-header {
+    border-color: rgba(80, 160, 120, 0.2);
+    background: rgba(80, 160, 120, 0.06);
+}
+
+.entertainment-row .quick-row-title {
+    color: #a8d8c0;
+}
+
+.entertainment-row .quick-row-desc {
+    color: rgba(80, 160, 120, 0.3);
+}
+
+.entertainment-row .quick-link-card {
+    border-color: rgba(80, 160, 120, 0.08);
+}
+
+.entertainment-row .quick-link-card:hover {
+    border-color: rgba(80, 160, 120, 0.25);
+    background: rgba(20, 40, 30, 0.6);
+    box-shadow: 0 6px 25px rgba(80, 160, 120, 0.06);
+}
+
+.entertainment-row .quick-link-title {
+    color: #a8d8c0;
+}
+
+.entertainment-row .quick-link-desc {
+    color: rgba(80, 160, 120, 0.25);
+}
+
+.entertainment-row .quick-link-go {
+    margin-top: 4px;
+    padding: 6px 12px;
+    background: rgba(123, 237, 159, 0.06);
+    border: 1px solid rgba(123, 237, 159, 0.12);
+    border-radius: 6px;
+    color: #7bed9f;
+    font-size: 9px;
+    font-family: "Be Vietnam Pro", sans-serif;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.entertainment-row .quick-link-go:hover {
+    background: rgba(123, 237, 159, 0.12);
+    border-color: rgba(123, 237, 159, 0.25);
+}
+
+/* =====================================================
+   FEEDBACK — THÌ THẦM TO NHỎ
+===================================================== */
+
+.feedback-row {
+    margin-top: 10px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feedback-row .quick-row-header {
+    border-color: rgba(200, 150, 255, 0.15) !important;
+    background: rgba(200, 150, 255, 0.04) !important;
+    padding: 14px 20px !important;
+}
+
+.feedback-row .quick-row-icon {
+    font-size: 24px;
+}
+
+.feedback-row .quick-row-title {
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #d4bfff;
+}
+
+.feedback-row .quick-row-desc {
+    font-size: 10px;
+    color: rgba(200, 150, 255, 0.3);
+}
+
+.feedback-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feedback-card {
+    border-color: rgba(200, 150, 255, 0.12) !important;
+    background: rgba(200, 150, 255, 0.03) !important;
+    padding: 16px 18px 14px !important;
+    cursor: pointer;
+    border-radius: 12px !important;
+    transition: all 0.35s ease !important;
+}
+
+.feedback-card:hover {
+    border-color: rgba(200, 150, 255, 0.3) !important;
+    background: rgba(200, 150, 255, 0.06) !important;
+    box-shadow: 0 6px 30px rgba(200, 150, 255, 0.06) !important;
+    transform: translateY(-2px) !important;
+}
+
+.feedback-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.feedback-icon {
+    font-size: 30px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.feedback-info {
+    flex: 1;
+    text-align: left;
+}
+
+.feedback-title {
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #d4bfff;
+    margin: 0 0 2px 0;
+}
+
+.feedback-desc {
+    font-size: 10px;
+    color: rgba(200, 150, 255, 0.3);
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+#feedbackGoLink {
+    margin-top: 4px;
+    padding: 8px 12px;
+    background: rgba(123, 237, 159, 0.06);
+    border: 1px solid rgba(123, 237, 159, 0.12);
+    border-radius: 6px;
+    color: #7bed9f;
+    font-size: 10px;
+    font-family: "Be Vietnam Pro", sans-serif;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#feedbackGoLink:hover {
+    background: rgba(123, 237, 159, 0.12);
+    border-color: rgba(123, 237, 159, 0.25);
+}
+
+.feedback-status {
+    font-size: 9px;
+    color: rgba(200, 150, 255, 0.12);
+    margin-top: 4px;
+    min-height: 16px;
+    text-align: center;
+}
+
+.feedback-status.success {
+    color: #7bed9f;
+}
+
+.feedback-status.error {
+    color: #ff6b6b;
+}
+
+
 
 /* =========================================================
    STAR EFFECT — SAO VÀNG RƠI (HÌNH SAO THẬT)
@@ -3419,6 +4467,209 @@ body.archive-mode {
 .star.fast {
     animation-duration: 4.5s !important;
 }
+
+
+/* =========================================================
+   FOOTER — BẢN QUYỀN (FULL-WIDTH)
+========================================================= */
+
+.site-footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin: 60px auto 0;
+    padding: 28px 30px;
+    border-top: 1px solid rgba(214, 169, 66, 0.08);
+    background: rgba(10, 9, 7, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* =====================================================
+   LEFT — BẢN QUYỀN
+===================================================== */
+
+.footer-left {
+    flex-shrink: 0;
+}
+
+.footer-copy {
+    font-size: 10px;
+    color: rgba(233, 210, 146, 0.2);
+    letter-spacing: 2px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* =====================================================
+   CENTER — TÊN + TRANG TRÍ
+===================================================== */
+
+.footer-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-divider-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(214, 169, 66, 0.15));
+}
+
+.footer-divider-line:last-child {
+    background: linear-gradient(to left, transparent, rgba(214, 169, 66, 0.15));
+}
+
+.footer-logo {
+    font-size: 14px;
+    color: rgba(214, 169, 66, 0.25);
+    animation: footerLogoPulse 4s ease-in-out infinite;
+}
+
+@keyframes footerLogoPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.footer-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: rgba(233, 210, 146, 0.35);
+    text-shadow: 0 0 30px rgba(214, 169, 66, 0.04);
+    white-space: nowrap;
+}
+
+/* =====================================================
+   RIGHT — SOCIAL
+===================================================== */
+
+.footer-right {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.footer-social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(214, 169, 66, 0.08);
+    border-radius: 50%;
+    color: rgba(233, 210, 146, 0.2);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.35s ease;
+}
+
+.footer-social-link:hover {
+    border-color: rgba(214, 169, 66, 0.3);
+    color: #f0d68d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(214, 169, 66, 0.05);
+}
+
+/* =========================================================
+   RESPONSIVE FOOTER
+========================================================= */
+
+@media (max-width: 820px) {
+    .footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    
+    .footer-center {
+        order: -1;
+    }
+    
+    .footer-divider-line {
+        width: 25px;
+    }
+}
+
+@media (max-width: 550px) {
+    .site-footer {
+        padding: 20px 16px;
+        margin-top: 40px;
+    }
+    
+    .footer-name {
+        font-size: 15px;
+        letter-spacing: 3px;
+    }
+    
+    .footer-copy {
+        font-size: 9px;
+    }
+    
+    .footer-logo {
+        font-size: 11px;
+    }
+    
+    .footer-divider-line {
+        width: 16px;
+    }
+    
+    .footer-social-link {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+}
+
+/* =========================================================
+   FOOTER — LIGHT THEME
+========================================================= */
+
+.archive-page.theme-light .site-footer {
+    background: rgba(255, 250, 240, 0.5);
+    border-top-color: rgba(180, 150, 80, 0.12);
+}
+
+.archive-page.theme-light .footer-copy {
+    color: rgba(80, 70, 50, 0.35);
+}
+
+.archive-page.theme-light .footer-name {
+    color: rgba(80, 70, 50, 0.4);
+}
+
+.archive-page.theme-light .footer-logo {
+    color: rgba(180, 150, 80, 0.2);
+}
+
+.archive-page.theme-light .footer-divider-line {
+    background: linear-gradient(to right, transparent, rgba(180, 150, 80, 0.15));
+}
+
+.archive-page.theme-light .footer-divider-line:last-child {
+    background: linear-gradient(to left, transparent, rgba(180, 150, 80, 0.15));
+}
+
+.archive-page.theme-light .footer-social-link {
+    border-color: rgba(180, 150, 80, 0.1);
+    color: rgba(80, 70, 50, 0.3);
+}
+
+.archive-page.theme-light .footer-social-link:hover {
+    border-color: rgba(180, 150, 80, 0.3);
+    color: #6a5a3a;
+}
+
 
 /* =========================================================
    LITTLE FEATURES — MÀU ĐA DẠNG, KHÔNG TRÙNG
@@ -3728,1356 +4979,125 @@ body.archive-mode {
     text-align: center;
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 900px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
-}
-
-@media (max-width: 550px) {
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .feature-card {
-        min-height: 150px;
-        padding: 24px 16px 20px;
-    }
-    
-    .feature-modal-content {
-        padding: 25px 20px 30px;
-    }
-    
-    .feature-modal-title {
-        font-size: 22px;
-    }
-    
-    .feature-modal-body {
-        font-size: 13px;
-    }
-}
 
 /* =========================================================
-   QUICK LINKS — LỆNH CẤP CỨU & GIẢI TRÍ (V2 - NHIỀU MÀU)
+   THEME LIGHT — LITTLE FEATURES
 ========================================================= */
-
-.quick-links-section {
-    position: relative;
-    z-index: 2;
-    width: min(1100px, 92%);
-    margin: 60px auto 100px;
-    padding: 0 10px;
-}
-
-/* =====================================================
-   HÀNG
-===================================================== */
-
-.quick-row {
-    margin-bottom: 45px;
-}
-
-.quick-row:last-child {
-    margin-bottom: 0;
-}
-
-.quick-row-header {
-    text-align: center;
-    padding: 16px 20px;
-    border-radius: 14px;
-    background: rgba(20, 17, 11, 0.5);
-    border: 1px solid rgba(214, 169, 66, 0.1);
-    margin-bottom: 16px;
-    backdrop-filter: blur(4px);
-}
-
-.quick-row-icon {
-    font-size: 28px;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.quick-row-title {
-    font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 16px;
-    letter-spacing: 4px;
-    font-weight: 600;
-    color: #f0d68d;
-    margin: 0;
-}
-
-.quick-row-desc {
-    font-size: 11px;
-    color: rgba(233, 210, 146, 0.3);
-    letter-spacing: 1px;
-    margin: 2px 0 0;
-}
-
-.quick-row-grid {
-    display: grid;
-    gap: 14px;
-}
-
-/* Cấp cứu: 5 cột */
-.emergency-grid {
-    grid-template-columns: repeat(5, 1fr);
-}
-
-/* Giải trí: 3 cột */
-.entertainment-grid {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-/* =====================================================
-   CARD CHUNG
-===================================================== */
-
-.quick-link-card {
-    position: relative;
-    padding: 16px 14px 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    border: 1px solid rgba(214, 169, 66, 0.08);
-    border-radius: 12px;
-    background: rgba(20, 17, 11, 0.4);
-    backdrop-filter: blur(4px);
-    text-align: center;
-    transition: all 0.35s ease;
-}
-
-.quick-link-card:hover {
-    background: rgba(38, 31, 17, 0.55);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-}
-
-.quick-link-icon {
-    font-size: 24px;
-    line-height: 1.2;
-}
-
-.quick-link-title {
-    font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 11.5px;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-    color: #f0d68d;
-    margin: 1px 0 0;
-}
-
-.quick-link-desc {
-    font-size: 9px;
-    color: rgba(233, 210, 146, 0.25);
-    letter-spacing: 0.5px;
-    margin-bottom: 2px;
-}
-
-/* =====================================================
-   CẤP CỨU - TONE ĐỎ NÂU
-===================================================== */
-
-.emergency-row .quick-row-header {
-    border-color: rgba(180, 80, 60, 0.2);
-    background: rgba(180, 80, 60, 0.06);
-}
-
-.emergency-row .quick-row-title {
-    color: #e8b4a0;
-}
-
-.emergency-row .quick-row-desc {
-    color: rgba(180, 80, 60, 0.3);
-}
-
-.emergency-row .quick-link-card {
-    border-color: rgba(180, 80, 60, 0.08);
-    background: rgba(20, 17, 11, 0.4);
-}
-
-.emergency-row .quick-link-card:hover {
-    border-color: rgba(180, 80, 60, 0.25);
-    background: rgba(40, 25, 20, 0.6);
-    box-shadow: 0 6px 25px rgba(180, 80, 60, 0.06);
-}
-
-.emergency-row .quick-link-title {
-    color: #e8b4a0;
-}
-
-.emergency-row .quick-link-desc {
-    color: rgba(180, 80, 60, 0.25);
-}
-
-.emergency-card .quick-copy-area {
-    width: 100%;
-    margin-top: 4px;
-}
-
-.emergency-card .quick-copy-btn {
-    padding: 6px 14px;
-    background: rgba(180, 80, 60, 0.08);
-    border: 1px solid rgba(180, 80, 60, 0.12);
-    border-radius: 6px;
-    color: rgba(200, 150, 130, 0.5);
-    font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 9px;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-}
-
-.emergency-card .quick-copy-btn:hover {
-    background: rgba(180, 80, 60, 0.15);
-    border-color: rgba(180, 80, 60, 0.25);
-    color: #e8b4a0;
-    transform: scale(1.02);
-}
-
-.emergency-card .quick-copy-btn.copied {
-    background: rgba(123, 237, 159, 0.12);
-    border-color: rgba(123, 237, 159, 0.2);
-    color: #7bed9f;
-}
-
-.emergency-card .quick-copy-feedback {
-    font-size: 9px;
-    color: #7bed9f;
-    margin-top: 2px;
-}
-
-/* =====================================================
-   GIẢI TRÍ - TONE XANH RÊU/NGỌC
-===================================================== */
-
-.entertainment-row .quick-row-header {
-    border-color: rgba(80, 160, 120, 0.2);
-    background: rgba(80, 160, 120, 0.06);
-}
-
-.entertainment-row .quick-row-title {
-    color: #a8d8c0;
-}
-
-.entertainment-row .quick-row-desc {
-    color: rgba(80, 160, 120, 0.3);
-}
-
-.entertainment-row .quick-link-card {
-    border-color: rgba(80, 160, 120, 0.08);
-}
-
-.entertainment-row .quick-link-card:hover {
-    border-color: rgba(80, 160, 120, 0.25);
-    background: rgba(20, 40, 30, 0.6);
-    box-shadow: 0 6px 25px rgba(80, 160, 120, 0.06);
-}
-
-.entertainment-row .quick-link-title {
-    color: #a8d8c0;
-}
-
-.entertainment-row .quick-link-desc {
-    color: rgba(80, 160, 120, 0.25);
-}
-
-.entertainment-row .quick-link-field {
-    border-color: rgba(80, 160, 120, 0.1);
-    color: #a8d8c0;
-}
-
-.entertainment-row .quick-link-field:focus {
-    border-color: rgba(80, 160, 120, 0.3);
-}
-
-.entertainment-row .quick-link-field::placeholder {
-    color: rgba(80, 160, 120, 0.15);
-}
-
-.entertainment-row .quick-link-save {
-    background: rgba(80, 160, 120, 0.08);
-    border-color: rgba(80, 160, 120, 0.12);
-    color: rgba(80, 160, 120, 0.4);
-}
-
-.entertainment-row .quick-link-save:hover {
-    background: rgba(80, 160, 120, 0.15);
-    border-color: rgba(80, 160, 120, 0.25);
-    color: #a8d8c0;
-}
-
-.entertainment-row .quick-link-save.saved {
-    background: rgba(123, 237, 159, 0.12);
-    border-color: rgba(123, 237, 159, 0.2);
-    color: #7bed9f;
-}
-
-.quick-link-input {
-    display: flex;
-    gap: 6px;
-    width: 100%;
-    margin-top: 2px;
-}
-
-.quick-link-field {
-    flex: 1;
-    padding: 5px 8px;
-    background: rgba(20, 17, 11, 0.8);
-    border: 1px solid rgba(214, 169, 66, 0.08);
-    border-radius: 6px;
-    color: #f0d68d;
-    font-size: 9px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    outline: none;
-    transition: border-color 0.3s ease;
-    min-width: 0;
-}
-
-.quick-link-field:focus {
-    border-color: rgba(214, 169, 66, 0.25);
-}
-
-.quick-link-field::placeholder {
-    color: rgba(233, 210, 146, 0.15);
-    font-size: 8.5px;
-}
-
-.quick-link-save {
-    padding: 5px 10px;
-    background: rgba(214, 169, 66, 0.06);
-    border: 1px solid rgba(214, 169, 66, 0.08);
-    border-radius: 6px;
-    color: rgba(233, 210, 146, 0.3);
-    font-size: 8.5px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.quick-link-save:hover {
-    background: rgba(214, 169, 66, 0.12);
-    border-color: rgba(214, 169, 66, 0.2);
-    color: #f0d68d;
-}
-
-.quick-link-save.saved {
-    background: rgba(123, 237, 159, 0.1);
-    border-color: rgba(123, 237, 159, 0.15);
-    color: #7bed9f;
-}
-
-.quick-link-go {
-    margin-top: 4px;
-    padding: 3px 12px;
-    background: rgba(123, 237, 159, 0.05);
-    border: 1px solid rgba(123, 237, 159, 0.08);
-    border-radius: 6px;
-    color: #7bed9f;
-    font-size: 8.5px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: none;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.quick-link-go:hover {
-    background: rgba(123, 237, 159, 0.1);
-    border-color: rgba(123, 237, 159, 0.18);
-}
-
-.quick-link-go.show {
-    display: inline-block;
-}
-
-/* =====================================================
-   THÌ THẦM TO NHỎ - TONE TÍM NÂU
-===================================================== */
-
-.feedback-row {
-    margin-top: 10px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feedback-row .quick-row-header {
-    border-color: rgba(160, 120, 180, 0.2);
-    background: rgba(160, 120, 180, 0.06);
-}
-
-.feedback-row .quick-row-title {
-    color: #d4bfff;
-}
-
-.feedback-row .quick-row-desc {
-    color: rgba(160, 120, 180, 0.3);
-}
-
-.feedback-grid {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.feedback-card {
-    border-color: rgba(160, 120, 180, 0.08) !important;
-    background: rgba(20, 17, 11, 0.4) !important;
-    padding: 16px 18px 14px !important;
-    cursor: pointer;
-    border-radius: 12px !important;
-    transition: all 0.35s ease !important;
-}
-
-.feedback-card:hover {
-    border-color: rgba(160, 120, 180, 0.25) !important;
-    background: rgba(40, 25, 45, 0.6) !important;
-    box-shadow: 0 6px 30px rgba(160, 120, 180, 0.06) !important;
-    transform: translateY(-2px) !important;
-}
-
-.feedback-content {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.feedback-icon {
-    font-size: 30px;
-    flex-shrink: 0;
-    line-height: 1;
-}
-
-.feedback-info {
-    flex: 1;
-    text-align: left;
-}
-
-.feedback-title {
-    font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 600;
-    color: #d4bfff;
-    margin: 0 0 2px 0;
-}
-
-.feedback-desc {
-    font-size: 10px;
-    color: rgba(160, 120, 180, 0.3);
-    letter-spacing: 0.5px;
-    margin: 0;
-}
-
-.quick-feedback-link {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-}
-
-.feedback-field {
-    flex: 1;
-    padding: 7px 12px;
-    background: rgba(20, 17, 11, 0.7);
-    border: 1px solid rgba(160, 120, 180, 0.08);
-    border-radius: 8px;
-    color: #d4bfff;
-    font-size: 10.5px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.feedback-field:focus {
-    border-color: rgba(160, 120, 180, 0.25);
-}
-
-.feedback-field::placeholder {
-    color: rgba(160, 120, 180, 0.12);
-    font-size: 9.5px;
-}
-
-.feedback-save-btn {
-    padding: 7px 16px;
-    background: rgba(160, 120, 180, 0.08);
-    border: 1px solid rgba(160, 120, 180, 0.1);
-    border-radius: 8px;
-    color: rgba(160, 120, 180, 0.35);
-    font-size: 9.5px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.feedback-save-btn:hover {
-    background: rgba(160, 120, 180, 0.15);
-    border-color: rgba(160, 120, 180, 0.2);
-    color: #d4bfff;
-}
-
-.feedback-save-btn.saved {
-    background: rgba(123, 237, 159, 0.1);
-    border-color: rgba(123, 237, 159, 0.15);
-    color: #7bed9f;
-}
-
-.feedback-status {
-    font-size: 9px;
-    color: rgba(160, 120, 180, 0.12);
-    margin-top: 4px;
-    min-height: 16px;
-    text-align: center;
-}
-
-.feedback-status.success {
-    color: #7bed9f;
-}
-
-.feedback-status.error {
-    color: #ff6b6b;
-}
-
-#feedbackGoLink {
-    margin-top: 6px;
-    padding: 4px 14px;
-    background: rgba(123, 237, 159, 0.05);
-    border: 1px solid rgba(123, 237, 159, 0.08);
-    border-radius: 6px;
-    color: #7bed9f;
-    font-size: 9px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: none;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#feedbackGoLink:hover {
-    background: rgba(123, 237, 159, 0.1);
-    border-color: rgba(123, 237, 159, 0.15);
-}
-
-#feedbackGoLink.show {
-    display: inline-block;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 1024px) {
-    .emergency-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 820px) {
-    .emergency-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .entertainment-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .emergency-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .entertainment-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .feedback-row {
-        max-width: 100%;
-        padding: 0 4px;
-    }
-    
-    .feedback-grid {
-        max-width: 100%;
-    }
-    
-    .feedback-content {
-        gap: 10px;
-    }
-    
-    .feedback-icon {
-        font-size: 24px;
-    }
-    
-    .feedback-title {
-        font-size: 12px;
-    }
-    
-    .quick-feedback-link {
-        flex-wrap: wrap;
-    }
-    
-    .feedback-field {
-        min-width: 100%;
-        font-size: 10px;
-        padding: 8px 12px;
-    }
-    
-    .feedback-save-btn {
-        width: 100%;
-        padding: 8px;
-        font-size: 10px;
-    }
-    
-    .quick-links-section {
-        margin: 40px auto 60px;
-    }
-    
-    .quick-link-card {
-        padding: 14px 12px 12px;
-    }
-    
-    .quick-link-title {
-        font-size: 10px;
-    }
-    
-    .quick-link-input {
-        flex-wrap: wrap;
-    }
-    
-    .quick-link-field {
-        min-width: 100%;
-    }
-    
-    .quick-link-save {
-        width: 100%;
-        padding: 6px;
-    }
-    
-    .feedback-card {
-        padding: 14px 14px 12px !important;
-    }
-}
-
-@media (max-width: 420px) {
-    .emergency-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* =====================================================
-   THÌ THẦM TO NHỎ - FEEDBACK (SỬA LẠI)
-===================================================== */
-
-.feedback-row {
-    margin-top: 10px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.feedback-header {
-    border-color: rgba(200, 150, 255, 0.15) !important;
-    background: rgba(200, 150, 255, 0.04) !important;
-    padding: 14px 20px !important;
-}
-
-.feedback-header .quick-row-icon {
-    font-size: 24px;
-}
-
-.feedback-header .quick-row-title {
-    font-size: 14px;
-    letter-spacing: 3px;
-    color: #d4bfff;
-}
-
-.feedback-header .quick-row-desc {
-    font-size: 10px;
-    color: rgba(200, 150, 255, 0.3);
-}
-
-.feedback-grid {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.feedback-card {
-    border-color: rgba(200, 150, 255, 0.12) !important;
-    background: rgba(200, 150, 255, 0.03) !important;
-    padding: 16px 18px 14px !important;
-    cursor: pointer;
-    border-radius: 12px !important;
-    transition: all 0.35s ease !important;
-}
-
-.feedback-card:hover {
-    border-color: rgba(200, 150, 255, 0.3) !important;
-    background: rgba(200, 150, 255, 0.06) !important;
-    box-shadow: 0 6px 30px rgba(200, 150, 255, 0.06) !important;
-    transform: translateY(-2px) !important;
-}
-
-.feedback-content {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.feedback-icon {
-    font-size: 30px;
-    flex-shrink: 0;
-    line-height: 1;
-}
-
-.feedback-info {
-    flex: 1;
-    text-align: left;
-}
-
-.feedback-title {
-    font-family: "Be Vietnam Pro", sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 600;
-    color: #d4bfff;
-    margin: 0 0 2px 0;
-}
-
-.feedback-desc {
-    font-size: 10px;
-    color: rgba(200, 150, 255, 0.3);
-    letter-spacing: 0.5px;
-    margin: 0;
-}
-
-.quick-feedback-link {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-}
-
-.feedback-field {
-    flex: 1;
-    padding: 7px 12px;
-    background: rgba(20, 17, 11, 0.7);
-    border: 1px solid rgba(200, 150, 255, 0.1);
-    border-radius: 8px;
-    color: #d4bfff;
-    font-size: 10.5px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.feedback-field:focus {
-    border-color: rgba(200, 150, 255, 0.3);
-}
-
-.feedback-field::placeholder {
-    color: rgba(200, 150, 255, 0.15);
-    font-size: 9.5px;
-}
-
-.feedback-save-btn {
-    padding: 7px 16px;
-    background: rgba(200, 150, 255, 0.08);
-    border: 1px solid rgba(200, 150, 255, 0.12);
-    border-radius: 8px;
-    color: rgba(200, 150, 255, 0.4);
-    font-size: 9.5px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.feedback-save-btn:hover {
-    background: rgba(200, 150, 255, 0.15);
-    border-color: rgba(200, 150, 255, 0.25);
-    color: #d4bfff;
-}
-
-.feedback-save-btn.saved {
-    background: rgba(123, 237, 159, 0.12);
-    border-color: rgba(123, 237, 159, 0.2);
-    color: #7bed9f;
-}
-
-.feedback-status {
-    font-size: 9px;
-    color: rgba(200, 150, 255, 0.15);
-    margin-top: 4px;
-    min-height: 16px;
-    text-align: center;
-}
-
-.feedback-status.success {
-    color: #7bed9f;
-}
-
-.feedback-status.error {
-    color: #ff6b6b;
-}
-
-/* Link đã lưu */
-#feedbackGoLink {
-    margin-top: 6px;
-    padding: 4px 14px;
-    background: rgba(123, 237, 159, 0.06);
-    border: 1px solid rgba(123, 237, 159, 0.12);
-    border-radius: 6px;
-    color: #7bed9f;
-    font-size: 9px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: none;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#feedbackGoLink:hover {
-    background: rgba(123, 237, 159, 0.12);
-    border-color: rgba(123, 237, 159, 0.25);
-}
-
-#feedbackGoLink.show {
-    display: inline-block;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 600px) {
-    .feedback-row {
-        max-width: 100%;
-        padding: 0 4px;
-    }
-    
-    .feedback-grid {
-        max-width: 100%;
-    }
-    
-    .feedback-content {
-        gap: 10px;
-    }
-    
-    .feedback-icon {
-        font-size: 24px;
-    }
-    
-    .feedback-title {
-        font-size: 12px;
-    }
-    
-    .quick-feedback-link {
-        flex-wrap: wrap;
-    }
-    
-    .feedback-field {
-        min-width: 100%;
-        font-size: 10px;
-        padding: 8px 12px;
-    }
-    
-    .feedback-save-btn {
-        width: 100%;
-        padding: 8px;
-        font-size: 10px;
-    }
-    
-    .feedback-card {
-        padding: 14px 14px 12px !important;
-    }
-}
-
-/* =========================================================
-   FOOTER — BẢN QUYỀN (FULL-WIDTH)
-========================================================= */
-
-.site-footer {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    margin: 60px auto 0;
-    padding: 28px 30px;
-    border-top: 1px solid rgba(214, 169, 66, 0.08);
-    background: rgba(10, 9, 7, 0.6);
-    backdrop-filter: blur(4px);
-}
-
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    gap: 20px;
-}
-
-/* =====================================================
-   LEFT — BẢN QUYỀN
-===================================================== */
-
-.footer-left {
-    flex-shrink: 0;
-}
-
-.footer-copy {
-    font-size: 10px;
-    color: rgba(233, 210, 146, 0.2);
-    letter-spacing: 2px;
-    margin: 0;
-    white-space: nowrap;
-}
-
-/* =====================================================
-   CENTER — TÊN + TRANG TRÍ
-===================================================== */
-
-.footer-center {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-divider-line {
-    width: 40px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(214, 169, 66, 0.15));
-}
-
-.footer-divider-line:last-child {
-    background: linear-gradient(to left, transparent, rgba(214, 169, 66, 0.15));
-}
-
-.footer-logo {
-    font-size: 14px;
-    color: rgba(214, 169, 66, 0.25);
-    animation: footerLogoPulse 4s ease-in-out infinite;
-}
-
-@keyframes footerLogoPulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.1); }
-}
-
-.footer-name {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 5px;
-    color: rgba(233, 210, 146, 0.35);
-    text-shadow: 0 0 30px rgba(214, 169, 66, 0.04);
-    white-space: nowrap;
-}
-
-/* =====================================================
-   RIGHT — SOCIAL
-===================================================== */
-
-.footer-right {
-    display: flex;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
-.footer-social-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(214, 169, 66, 0.08);
-    border-radius: 50%;
-    color: rgba(233, 210, 146, 0.2);
-    font-size: 13px;
-    text-decoration: none;
-    transition: all 0.35s ease;
-}
-
-.footer-social-link:hover {
-    border-color: rgba(214, 169, 66, 0.3);
-    color: #f0d68d;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(214, 169, 66, 0.05);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 820px) {
-    .footer-inner {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-    }
-    
-    .footer-center {
-        order: -1;
-    }
-    
-    .footer-divider-line {
-        width: 25px;
-    }
-}
-
-@media (max-width: 550px) {
-    .site-footer {
-        padding: 20px 16px;
-        margin-top: 40px;
-    }
-    
-    .footer-name {
-        font-size: 15px;
-        letter-spacing: 3px;
-    }
-    
-    .footer-copy {
-        font-size: 9px;
-    }
-    
-    .footer-logo {
-        font-size: 11px;
-    }
-    
-    .footer-divider-line {
-        width: 16px;
-    }
-    
-    .footer-social-link {
-        width: 28px;
-        height: 28px;
-        font-size: 11px;
-    }
-}
-
-
-/* =========================================================
-   THEME LIGHT — CẬP NHẬT FULL TRANG
-========================================================= */
-
-/* =====================================================
-   BACKGROUND CHÍNH
-===================================================== */
-
-.archive-page.theme-light {
-    background: #f5efe6;
-    color: #3d3528;
-}
-
-.archive-page.theme-light .archive-header {
-    background: rgba(245, 239, 230, 0.92);
-    border-bottom: 1px solid rgba(180, 150, 80, 0.25);
-}
-
-.archive-page.theme-light .archive-logo {
-    color: #8a7a4e;
-}
-
-.archive-page.theme-light .archive-nav a,
-.archive-page.theme-light .archive-nav button {
-    color: rgba(80, 70, 50, 0.7);
-}
-
-.archive-page.theme-light .archive-nav a:hover,
-.archive-page.theme-light .archive-nav button:hover {
-    color: #6a5a3a;
-}
-
-.archive-page.theme-light .archive-nav button {
-    border-color: rgba(180, 150, 80, 0.35);
-}
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.archive-page.theme-light .archive-hero h1 {
-    color: #6a5a3a;
-    text-shadow: 0 8px 30px rgba(0,0,0,0.08);
-}
-
-.archive-page.theme-light .archive-description {
-    color: rgba(80, 70, 50, 0.6);
-}
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.archive-page.theme-light .search-box {
-    background: rgba(255, 250, 240, 0.85);
-    border-color: rgba(180, 150, 80, 0.35);
-}
-
-.archive-page.theme-light .search-box input {
-    color: #3d3528;
-}
-
-.archive-page.theme-light .search-box input::placeholder {
-    color: rgba(80, 70, 50, 0.4);
-}
-
-.archive-page.theme-light .search-icon {
-    color: #b89a5c;
-}
-
-/* =====================================================
-   TAGS
-===================================================== */
-
-.archive-page.theme-light .tag {
-    color: rgba(80, 70, 50, 0.6);
-    border-color: rgba(180, 150, 80, 0.25);
-    background: rgba(255, 250, 240, 0.5);
-}
-
-.archive-page.theme-light .tag:hover {
-    color: #5a4a30;
-}
-
-.archive-page.theme-light .tag.active {
-    color: #f5efe6;
-    background: #8a7a4e;
-    border-color: #8a7a4e;
-}
-
-/* =====================================================
-   CHARACTER CARDS
-===================================================== */
-
-.archive-page.theme-light .character-card {
-    background: #fcf8f0;
-    border-color: rgba(180, 150, 80, 0.2);
-}
-
-.archive-page.theme-light .character-card:hover {
-    border-color: rgba(180, 150, 80, 0.5);
-}
-
-.archive-page.theme-light .character-info {
-    background: transparent;
-}
-
-.archive-page.theme-light .character-number {
-    color: rgba(180, 150, 80, 0.7);
-}
-
-.archive-page.theme-light .character-info h3 {
-    color: #5a4a30;
-}
-
-.archive-page.theme-light .character-info h3::after {
-    background: linear-gradient(90deg, #b89a5c, rgba(184, 154, 92, 0.12));
-}
-
-.archive-page.theme-light .character-quote {
-    color: rgba(80, 70, 50, 0.8);
-}
-
-.archive-page.theme-light .character-quote::before {
-    background: linear-gradient(to bottom, rgba(184, 154, 92, 0), rgba(184, 154, 92, 0.7) 25%, rgba(184, 154, 92, 0.35) 75%, rgba(184, 154, 92, 0));
-}
-
-.archive-page.theme-light .character-tags span {
-    color: rgba(80, 70, 50, 0.7);
-    border-color: rgba(180, 150, 80, 0.3);
-    background: rgba(180, 150, 80, 0.06);
-}
-
-.archive-page.theme-light .character-tags span:hover {
-    color: #5a4a30;
-    border-color: rgba(180, 150, 80, 0.6);
-    background: rgba(180, 150, 80, 0.12);
-}
-
-.archive-page.theme-light .character-button {
-    color: #6a5a3a;
-    border-color: rgba(180, 150, 80, 0.45);
-    background: rgba(180, 150, 80, 0.06);
-}
-
-.archive-page.theme-light .character-button:hover {
-    color: #4a3a28;
-    border-color: rgba(180, 150, 80, 0.8);
-    background: rgba(180, 150, 80, 0.12);
-}
-
-/* =====================================================
-   CHARACTER CARD SPARKLE (LIGHT MODE)
-===================================================== */
-
-.archive-page.theme-light .card-sparkles .sparkle-dot {
-    background: radial-gradient(circle, rgba(200, 170, 100, 0.4), rgba(200, 170, 100, 0));
-    box-shadow: 0 0 6px 2px rgba(200, 170, 100, 0.08);
-}
-
-/* =====================================================
-   SECTION HEADINGS
-===================================================== */
-
-.archive-page.theme-light .section-heading h2 {
-    color: #5a4a30;
-}
-
-.archive-page.theme-light .section-label {
-    color: #8a7a4e;
-}
-
-.archive-page.theme-light .about-section {
-    border-color: rgba(180, 150, 80, 0.2);
-}
-
-.archive-page.theme-light .about-text {
-    color: rgba(80, 70, 50, 0.6);
-}
-
-.archive-page.theme-light .about-signature {
-    color: rgba(180, 150, 80, 0.7);
-}
 
 /* =====================================================
    LITTLE FEATURES (LIGHT MODE)
 ===================================================== */
 
-.archive-page.theme-light .feature-card {
+.archive-page.theme-light .features-section .feature-card {
     background: rgba(255, 250, 240, 0.5);
     border-color: rgba(180, 150, 80, 0.15);
     color: #5a4a30;
 }
 
-.archive-page.theme-light .feature-card:hover {
+.archive-page.theme-light .features-section .feature-card:hover {
     background: rgba(255, 250, 240, 0.8);
     border-color: rgba(180, 150, 80, 0.4);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
-.archive-page.theme-light .feature-card .feature-title {
+.archive-page.theme-light .features-section .feature-card .feature-title {
     color: #6a5a3a;
 }
 
-.archive-page.theme-light .feature-card .feature-desc {
+.archive-page.theme-light .features-section .feature-card .feature-desc {
     color: rgba(80, 70, 50, 0.4);
 }
 
 /* Random — Vàng đồng light */
-.archive-page.theme-light .feature-card[data-feature="random"] {
+.archive-page.theme-light .features-section .feature-card[data-feature="random"] {
     border-color: rgba(180, 150, 80, 0.2);
     background: rgba(250, 245, 230, 0.5);
 }
 
-.archive-page.theme-light .feature-card[data-feature="random"]:hover {
+.archive-page.theme-light .features-section .feature-card[data-feature="random"]:hover {
     border-color: rgba(180, 150, 80, 0.5);
     background: rgba(250, 245, 230, 0.8);
 }
 
-.archive-page.theme-light .feature-card[data-feature="random"] .feature-title {
+.archive-page.theme-light .features-section .feature-card[data-feature="random"] .feature-title {
     color: #8a7a4e;
 }
 
 /* Guess — Xanh đêm light */
-.archive-page.theme-light .feature-card[data-feature="guess"] {
+.archive-page.theme-light .features-section .feature-card[data-feature="guess"] {
     border-color: rgba(100, 150, 170, 0.2);
     background: rgba(235, 245, 250, 0.5);
 }
 
-.archive-page.theme-light .feature-card[data-feature="guess"]:hover {
+.archive-page.theme-light .features-section .feature-card[data-feature="guess"]:hover {
     border-color: rgba(100, 150, 170, 0.4);
     background: rgba(235, 245, 250, 0.8);
 }
 
-.archive-page.theme-light .feature-card[data-feature="guess"] .feature-title {
+.archive-page.theme-light .features-section .feature-card[data-feature="guess"] .feature-title {
     color: #4a7a90;
 }
 
 /* Tarot — Tím light */
-.archive-page.theme-light .feature-card[data-feature="tarot"] {
+.archive-page.theme-light .features-section .feature-card[data-feature="tarot"] {
     border-color: rgba(180, 140, 200, 0.2);
     background: rgba(245, 235, 250, 0.5);
 }
 
-.archive-page.theme-light .feature-card[data-feature="tarot"]:hover {
+.archive-page.theme-light .features-section .feature-card[data-feature="tarot"]:hover {
     border-color: rgba(180, 140, 200, 0.4);
     background: rgba(245, 235, 250, 0.8);
 }
 
-.archive-page.theme-light .feature-card[data-feature="tarot"] .feature-title {
+.archive-page.theme-light .features-section .feature-card[data-feature="tarot"] .feature-title {
     color: #7a5a8a;
 }
 
 /* Challenge — Đỏ light */
-.archive-page.theme-light .feature-card[data-feature="challenge"] {
+.archive-page.theme-light .features-section .feature-card[data-feature="challenge"] {
     border-color: rgba(200, 140, 120, 0.2);
     background: rgba(250, 240, 235, 0.5);
 }
 
-.archive-page.theme-light .feature-card[data-feature="challenge"]:hover {
+.archive-page.theme-light .features-section .feature-card[data-feature="challenge"]:hover {
     border-color: rgba(200, 140, 120, 0.4);
     background: rgba(250, 240, 235, 0.8);
 }
 
-.archive-page.theme-light .feature-card[data-feature="challenge"] .feature-title {
+.archive-page.theme-light .features-section .feature-card[data-feature="challenge"] .feature-title {
     color: #8a5a4a;
 }
 
 /* Tài Xỉu — Ngọc light */
-.archive-page.theme-light .feature-card[data-feature="taixiu"] {
+.archive-page.theme-light .features-section .feature-card[data-feature="taixiu"] {
     border-color: rgba(100, 180, 160, 0.2);
     background: rgba(235, 250, 245, 0.5);
 }
 
-.archive-page.theme-light .feature-card[data-feature="taixiu"]:hover {
+.archive-page.theme-light .features-section .feature-card[data-feature="taixiu"]:hover {
     border-color: rgba(100, 180, 160, 0.4);
     background: rgba(235, 250, 245, 0.8);
 }
 
-.archive-page.theme-light .feature-card[data-feature="taixiu"] .feature-title {
+.archive-page.theme-light .features-section .feature-card[data-feature="taixiu"] .feature-title {
     color: #4a7a6a;
 }
 
 /* IELTS — Vàng nâu light */
-.archive-page.theme-light .feature-card[data-feature="ielts"] {
+.archive-page.theme-light .features-section .feature-card[data-feature="ielts"] {
     border-color: rgba(180, 160, 120, 0.2);
     background: rgba(250, 245, 235, 0.5);
 }
 
-.archive-page.theme-light .feature-card[data-feature="ielts"]:hover {
+.archive-page.theme-light .features-section .feature-card[data-feature="ielts"]:hover {
     border-color: rgba(180, 160, 120, 0.4);
     background: rgba(250, 245, 235, 0.8);
 }
 
-.archive-page.theme-light .feature-card[data-feature="ielts"] .feature-title {
+.archive-page.theme-light .features-section .feature-card[data-feature="ielts"] .feature-title {
     color: #7a6a4a;
 }
+
 
 /* =====================================================
    FEATURE MODAL (LIGHT MODE)
@@ -5112,10 +5132,12 @@ body.archive-mode {
     color: #6a5a3a;
 }
 
+
 /* =====================================================
    QUICK LINKS (LIGHT MODE)
 ===================================================== */
 
+/* Row Header */
 .archive-page.theme-light .quick-row-header {
     background: rgba(255, 250, 240, 0.5);
     border-color: rgba(180, 150, 80, 0.15);
@@ -5129,6 +5151,7 @@ body.archive-mode {
     color: rgba(80, 70, 50, 0.4);
 }
 
+/* Quick Link Cards */
 .archive-page.theme-light .quick-link-card {
     background: rgba(255, 250, 240, 0.4);
     border-color: rgba(180, 150, 80, 0.1);
@@ -5187,6 +5210,12 @@ body.archive-mode {
     color: #5a3a2a;
 }
 
+.archive-page.theme-light .emergency-card .quick-copy-btn.copied {
+    background: rgba(123, 237, 159, 0.12);
+    border-color: rgba(123, 237, 159, 0.2);
+    color: #7bed9f;
+}
+
 /* Entertainment — Xanh light */
 .archive-page.theme-light .entertainment-row .quick-row-header {
     border-color: rgba(100, 160, 140, 0.2);
@@ -5210,29 +5239,22 @@ body.archive-mode {
     color: #4a7a6a;
 }
 
-.archive-page.theme-light .entertainment-row .quick-link-field {
-    background: rgba(255, 250, 240, 0.8);
-    border-color: rgba(100, 160, 140, 0.15);
-    color: #3d3528;
+.archive-page.theme-light .entertainment-row .quick-link-go {
+    background: rgba(100, 160, 140, 0.06);
+    border-color: rgba(100, 160, 140, 0.12);
+    color: #4a7a6a;
 }
 
-.archive-page.theme-light .entertainment-row .quick-link-field::placeholder {
-    color: rgba(80, 70, 50, 0.3);
+.archive-page.theme-light .entertainment-row .quick-link-go:hover {
+    background: rgba(100, 160, 140, 0.12);
+    border-color: rgba(100, 160, 140, 0.2);
 }
 
-.archive-page.theme-light .entertainment-row .quick-link-save {
-    background: rgba(100, 160, 140, 0.08);
-    border-color: rgba(100, 160, 140, 0.15);
-    color: rgba(80, 70, 50, 0.4);
-}
 
-.archive-page.theme-light .entertainment-row .quick-link-save:hover {
-    background: rgba(100, 160, 140, 0.15);
-    border-color: rgba(100, 160, 140, 0.3);
-    color: #3d3528;
-}
+/* =====================================================
+   FEEDBACK (LIGHT MODE)
+===================================================== */
 
-/* Feedback — Tím light */
 .archive-page.theme-light .feedback-row .quick-row-header {
     border-color: rgba(180, 150, 200, 0.2);
     background: rgba(245, 240, 250, 0.4);
@@ -5240,6 +5262,10 @@ body.archive-mode {
 
 .archive-page.theme-light .feedback-row .quick-row-title {
     color: #7a5a8a;
+}
+
+.archive-page.theme-light .feedback-row .quick-row-desc {
+    color: rgba(80, 70, 50, 0.35);
 }
 
 .archive-page.theme-light .feedback-card {
@@ -5250,6 +5276,7 @@ body.archive-mode {
 .archive-page.theme-light .feedback-card:hover {
     background: rgba(255, 250, 240, 0.7) !important;
     border-color: rgba(180, 150, 200, 0.3) !important;
+    box-shadow: 0 6px 25px rgba(180, 150, 200, 0.06) !important;
 }
 
 .archive-page.theme-light .feedback-title {
@@ -5260,184 +5287,18 @@ body.archive-mode {
     color: rgba(80, 70, 50, 0.35);
 }
 
-.archive-page.theme-light .feedback-field {
-    background: rgba(255, 250, 240, 0.8);
-    border-color: rgba(180, 150, 200, 0.15);
-    color: #3d3528;
+.archive-page.theme-light .feedback-icon {
+    color: #7a5a8a;
 }
 
-.archive-page.theme-light .feedback-field::placeholder {
-    color: rgba(80, 70, 50, 0.3);
+.archive-page.theme-light #feedbackGoLink {
+    background: rgba(100, 160, 140, 0.06);
+    border-color: rgba(100, 160, 140, 0.12);
+    color: #4a7a6a;
 }
 
-.archive-page.theme-light .feedback-save-btn {
-    background: rgba(180, 150, 200, 0.08);
-    border-color: rgba(180, 150, 200, 0.15);
-    color: rgba(80, 70, 50, 0.4);
+.archive-page.theme-light #feedbackGoLink:hover {
+    background: rgba(100, 160, 140, 0.12);
+    border-color: rgba(100, 160, 140, 0.2);
+    color: #3d6a5a;
 }
-
-.archive-page.theme-light .feedback-save-btn:hover {
-    background: rgba(180, 150, 200, 0.15);
-    border-color: rgba(180, 150, 200, 0.3);
-    color: #3d3528;
-}
-
-/* =====================================================
-   FOOTER (LIGHT MODE)
-===================================================== */
-
-.archive-page.theme-light .site-footer {
-    background: rgba(255, 250, 240, 0.5);
-    border-top-color: rgba(180, 150, 80, 0.12);
-}
-
-.archive-page.theme-light .footer-copy {
-    color: rgba(80, 70, 50, 0.35);
-}
-
-.archive-page.theme-light .footer-name {
-    color: rgba(80, 70, 50, 0.4);
-}
-
-.archive-page.theme-light .footer-logo {
-    color: rgba(180, 150, 80, 0.2);
-}
-
-.archive-page.theme-light .footer-divider-line {
-    background: linear-gradient(to right, transparent, rgba(180, 150, 80, 0.15));
-}
-
-.archive-page.theme-light .footer-divider-line:last-child {
-    background: linear-gradient(to left, transparent, rgba(180, 150, 80, 0.15));
-}
-
-.archive-page.theme-light .footer-social-link {
-    border-color: rgba(180, 150, 80, 0.1);
-    color: rgba(80, 70, 50, 0.3);
-}
-
-.archive-page.theme-light .footer-social-link:hover {
-    border-color: rgba(180, 150, 80, 0.3);
-    color: #6a5a3a;
-}
-
-/* =====================================================
-   MUSIC PLAYER (LIGHT MODE)
-===================================================== */
-
-.archive-page.theme-light .music-player-overlay {
-    background: rgba(255, 250, 240, 0.95) !important;
-    border-color: rgba(180, 150, 80, 0.3) !important;
-}
-
-.archive-page.theme-light .music-player-overlay #currentTrackName {
-    color: #5a4a30 !important;
-}
-
-.archive-page.theme-light .music-player-overlay #vinylDisc {
-    background: radial-gradient(circle at 30% 30%, #ddd, #bbb 60%, #999) !important;
-    box-shadow: 
-        0 0 0 4px rgba(180, 150, 80, 0.15),
-        0 0 0 8px rgba(180, 150, 80, 0.06),
-        inset 0 0 40px rgba(0,0,0,0.15) !important;
-}
-
-.archive-page.theme-light .music-player-overlay #vinylDisc > div:first-child {
-    background: radial-gradient(circle at 40% 35%, #c9a85a, #8a7a4e) !important;
-}
-
-/* =====================================================
-   STAR CONTAINER (LIGHT MODE)
-===================================================== */
-
-.archive-page.theme-light .star-container .star {
-    color: rgba(180, 150, 80, 0.4);
-}
-
-.archive-page.theme-light .star-container .star::before {
-    text-shadow: 0 0 10px rgba(180, 150, 80, 0.3);
-}
-
-/* =====================================================
-   AMBIENT BACKGROUND (LIGHT MODE)
-===================================================== */
-
-.archive-page.theme-light .archive-page::before {
-    background: 
-        radial-gradient(circle at 30% 20%, rgba(180, 150, 80, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 70% 80%, rgba(180, 150, 80, 0.03) 0%, transparent 40%);
-}
-
-.archive-page.theme-light .archive-page::after {
-    opacity: 0.03;
-}
-
-/* =========================================================
-   GOLD DUST — BỤI VÀNG BAY TRÊN ENTRANCE
-========================================================= */
-
-.dust-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-    overflow: hidden;
-}
-
-.dust-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0));
-    border-radius: 50%;
-    box-shadow: 0 0 6px 2px rgba(255, 215, 0, 0.1);
-    animation: dustFloat linear infinite;
-    opacity: 0;
-}
-
-@keyframes dustFloat {
-    0% {
-        transform: translateY(0) translateX(0) scale(0);
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.8;
-        transform: translateY(-20px) translateX(10px) scale(1);
-    }
-    80% {
-        opacity: 0.6;
-        transform: translateY(-60px) translateX(-5px) scale(0.8);
-    }
-    100% {
-        transform: translateY(-80px) translateX(15px) scale(0);
-        opacity: 0;
-    }
-}
-
-
-/* =========================================================
-   TEXT GLOW PULSE
-========================================================= */
-
-.hero-content h1 {
-    animation: textGlowPulse 3s ease-in-out infinite;
-}
-
-@keyframes textGlowPulse {
-    0%, 100% {
-        text-shadow: 
-            0 0 20px rgba(238, 200, 105, 0.15),
-            0 5px 30px rgba(0, 0, 0, 0.75);
-    }
-    50% {
-        text-shadow: 
-            0 0 40px rgba(238, 200, 105, 0.3),
-            0 0 80px rgba(238, 200, 105, 0.05),
-            0 5px 30px rgba(0, 0, 0, 0.75);
-    }
-}
-
-
