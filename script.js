@@ -3967,3 +3967,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+// =========================================================
+// DUST PARTICLES — BỤI VÀNG (NÂNG CẤP)
+// =========================================================
+
+function createDust() {
+    const container = document.getElementById('dustContainer');
+    if (!container) return;
+    
+    // Xóa các hạt cũ (nếu có)
+    container.innerHTML = '';
+    
+    // Số lượng hạt bụi
+    const count = 50;
+    
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'dust-particle';
+        
+        // Random vị trí
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.bottom = Math.random() * 30 + '%';
+        
+        // Random kích thước (2-6px)
+        const size = 2 + Math.random() * 5;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Random thời gian (4-10s)
+        const duration = 4 + Math.random() * 6;
+        particle.style.animationDuration = duration + 's';
+        
+        // Random độ trễ (0-10s)
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        
+        // Random độ sáng
+        if (Math.random() > 0.8) {
+            particle.classList.add('bright');
+        }
+        
+        // Random tốc độ
+        if (Math.random() > 0.7) {
+            particle.classList.add('slow');
+        } else if (Math.random() > 0.5) {
+            particle.classList.add('fast');
+        }
+        
+        container.appendChild(particle);
+    }
+}
+
+// Gọi khi DOM load
+document.addEventListener('DOMContentLoaded', createDust);
+
+// Hàm này vẫn giữ nguyên để dùng cho các nút cần âm thanh riêng
+function playClickSound() {
+    try {
+        const randomIndex = Math.floor(Math.random() * SOUND_FILES.length);
+        const audio = new Audio(SOUND_FILES[randomIndex]);
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+    } catch(e) {}
+}
