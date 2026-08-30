@@ -5302,3 +5302,280 @@ body.archive-mode {
     border-color: rgba(100, 160, 140, 0.2);
     color: #3d6a5a;
 }
+
+
+/* =========================================================
+   CHARACTER CARD — HIỆU ỨNG TRÁNG GƯƠNG (TINH TẾ)
+========================================================= */
+
+.character-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lớp ánh sáng tráng gương chính */
+.character-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -80%;
+    width: 60%;
+    height: 200%;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255, 235, 200, 0.03) 40%,
+        rgba(255, 235, 200, 0.08) 48%,
+        rgba(255, 245, 220, 0.12) 52%,
+        rgba(255, 235, 200, 0.08) 58%,
+        rgba(255, 235, 200, 0.03) 65%,
+        transparent 75%,
+        transparent 100%
+    );
+    transform: skewX(-25deg) translateX(0);
+    animation: glass-shine 6s ease-in-out infinite;
+    opacity: 0.6;
+    will-change: transform;
+}
+
+/* Lớp ánh sáng thứ hai — chậm hơn, tạo hiệu ứng gợn sóng */
+.character-card::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -100%;
+    width: 50%;
+    height: 160%;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 245, 210, 0.02) 50%,
+        rgba(255, 245, 210, 0.06) 55%,
+        rgba(255, 255, 240, 0.08) 60%,
+        rgba(255, 245, 210, 0.06) 65%,
+        rgba(255, 245, 210, 0.02) 70%,
+        transparent 85%,
+        transparent 100%
+    );
+    transform: skewX(-20deg) translateX(0);
+    animation: glass-shine-2 10s ease-in-out infinite;
+    opacity: 0.3;
+    will-change: transform;
+}
+
+/* =====================================================
+   ANIMATION — CHUYỂN ĐỘNG CHẬM RÃI
+===================================================== */
+
+@keyframes glass-shine {
+    0% {
+        transform: skewX(-25deg) translateX(-150%);
+        opacity: 0.2;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    30% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    70% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: skewX(-25deg) translateX(250%);
+        opacity: 0.1;
+    }
+}
+
+@keyframes glass-shine-2 {
+    0% {
+        transform: skewX(-20deg) translateX(-200%);
+        opacity: 0.1;
+    }
+    15% {
+        opacity: 0.35;
+    }
+    40% {
+        opacity: 0.4;
+    }
+    60% {
+        opacity: 0.3;
+    }
+    80% {
+        opacity: 0.35;
+    }
+    100% {
+        transform: skewX(-20deg) translateX(300%);
+        opacity: 0.05;
+    }
+}
+
+/* =====================================================
+   HOVER — TĂNG CƯỜNG HIỆU ỨNG KHI DI CHUỘT
+===================================================== */
+
+.character-card:hover::before {
+    animation-duration: 4s;
+    opacity: 0.9;
+}
+
+.character-card:hover::after {
+    animation-duration: 7s;
+    opacity: 0.5;
+}
+
+/* =====================================================
+   GLIMMER — ĐỐM SÁNG LẤP LÁNH NHỎ TRÊN CARD
+===================================================== */
+
+.character-card .glimmer {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 245, 210, 0.8), rgba(255, 245, 210, 0));
+    z-index: 6;
+    pointer-events: none;
+    animation: glimmer-fade 5s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes glimmer-fade {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    20% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+    40% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    60% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+    80% {
+        opacity: 0.2;
+        transform: scale(0.6);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+/* =====================================================
+   DARK MODE — TĂNG CƯỜNG ĐỘ TƯƠNG PHẢN
+===================================================== */
+
+.character-card::before {
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255, 235, 200, 0.04) 40%,
+        rgba(255, 235, 200, 0.10) 48%,
+        rgba(255, 245, 220, 0.15) 52%,
+        rgba(255, 235, 200, 0.10) 58%,
+        rgba(255, 235, 200, 0.04) 65%,
+        transparent 75%,
+        transparent 100%
+    );
+}
+
+.character-card::after {
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 245, 210, 0.03) 50%,
+        rgba(255, 245, 210, 0.08) 55%,
+        rgba(255, 255, 240, 0.10) 60%,
+        rgba(255, 245, 210, 0.08) 65%,
+        rgba(255, 245, 210, 0.03) 70%,
+        transparent 85%,
+        transparent 100%
+    );
+}
+
+/* =====================================================
+   LIGHT MODE — NHẸ NHÀNG HƠN
+===================================================== */
+
+.archive-page.theme-light .character-card::before {
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255, 245, 230, 0.05) 40%,
+        rgba(255, 245, 230, 0.12) 48%,
+        rgba(255, 250, 240, 0.15) 52%,
+        rgba(255, 245, 230, 0.12) 58%,
+        rgba(255, 245, 230, 0.05) 65%,
+        transparent 75%,
+        transparent 100%
+    );
+}
+
+.archive-page.theme-light .character-card::after {
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 245, 230, 0.04) 50%,
+        rgba(255, 245, 230, 0.08) 55%,
+        rgba(255, 250, 240, 0.10) 60%,
+        rgba(255, 245, 230, 0.08) 65%,
+        rgba(255, 245, 230, 0.04) 70%,
+        transparent 85%,
+        transparent 100%
+    );
+}
+
+/* =====================================================
+   MOBILE — GIẢM HIỆU ỨNG ĐỂ TRÁNH LAG
+===================================================== */
+
+@media (max-width: 650px) {
+    .character-card::before {
+        animation-duration: 8s;
+        opacity: 0.3;
+        background: linear-gradient(
+            115deg,
+            transparent 0%,
+            transparent 35%,
+            rgba(255, 235, 200, 0.02) 45%,
+            rgba(255, 235, 200, 0.05) 52%,
+            rgba(255, 245, 220, 0.07) 56%,
+            rgba(255, 235, 200, 0.05) 60%,
+            rgba(255, 235, 200, 0.02) 68%,
+            transparent 78%,
+            transparent 100%
+        );
+    }
+    
+    .character-card::after {
+        animation-duration: 12s;
+        opacity: 0.15;
+        display: none; /* Ẩn lớp thứ hai trên mobile */
+    }
+    
+    .character-card .glimmer {
+        display: none;
+    }
+}
