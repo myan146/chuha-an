@@ -4163,59 +4163,63 @@ body.archive-mode {
    GIẢI TRÍ - TONE XANH RÊU/NGỌC
 ===================================================== */
 
-.entertainment-row .quick-row-header {
-    border-color: rgba(80, 160, 120, 0.2);
-    background: rgba(80, 160, 120, 0.06);
+/* =====================================================
+   GIẢI TRÍ — 1 CỘT LỚN, Ở GIỮA
+===================================================== */
+
+.entertainment-grid-single {
+    grid-template-columns: 1fr !important;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 0 !important;
 }
 
-.entertainment-row .quick-row-title {
-    color: #a8d8c0;
+.entertainment-card {
+    padding: 24px 28px 26px !important;
+    border-radius: 14px !important;
+    background: rgba(20, 17, 11, 0.5) !important;
+    border-color: rgba(80, 160, 120, 0.12) !important;
+    transition: all 0.4s ease !important;
 }
 
-.entertainment-row .quick-row-desc {
-    color: rgba(80, 160, 120, 0.3);
+.entertainment-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(80, 160, 120, 0.35) !important;
+    background: rgba(30, 50, 40, 0.6) !important;
+    box-shadow: 0 8px 30px rgba(80, 160, 120, 0.06) !important;
 }
 
-.entertainment-row .quick-link-card {
-    border-color: rgba(80, 160, 120, 0.08);
+.entertainment-card .quick-link-icon {
+    font-size: 32px !important;
+    margin-bottom: 4px;
 }
 
-.entertainment-row .quick-link-card:hover {
-    border-color: rgba(80, 160, 120, 0.25);
-    background: rgba(20, 40, 30, 0.6);
-    box-shadow: 0 6px 25px rgba(80, 160, 120, 0.06);
+.entertainment-card .quick-link-title {
+    font-size: 16px !important;
+    letter-spacing: 2px !important;
+    color: #a8d8c0 !important;
+    font-weight: 600 !important;
 }
 
-.entertainment-row .quick-link-title {
-    color: #a8d8c0;
+.entertainment-card .quick-link-desc {
+    font-size: 12px !important;
+    color: rgba(80, 160, 120, 0.3) !important;
+    margin-bottom: 8px;
 }
 
-.entertainment-row .quick-link-desc {
-    color: rgba(80, 160, 120, 0.25);
-}
-
-.entertainment-row .quick-link-go {
-    margin-top: 4px;
-    padding: 6px 12px;
-    background: rgba(123, 237, 159, 0.06);
-    border: 1px solid rgba(123, 237, 159, 0.12);
-    border-radius: 6px;
-    color: #7bed9f;
-    font-size: 9px;
-    font-family: "Be Vietnam Pro", sans-serif;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.entertainment-row .quick-link-go:hover {
-    background: rgba(123, 237, 159, 0.12);
-    border-color: rgba(123, 237, 159, 0.25);
+/* Mobile responsive */
+@media (max-width: 650px) {
+    .entertainment-grid-single {
+        max-width: 100%;
+    }
+    
+    .entertainment-card {
+        padding: 20px 18px 20px !important;
+    }
+    
+    .entertainment-card .quick-link-title {
+        font-size: 14px !important;
+    }
 }
 
 /* =====================================================
