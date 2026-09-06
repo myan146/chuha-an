@@ -4031,3 +4031,77 @@ function playClickSound() {
         audio.play().catch(() => {});
     } catch(e) {}
 }
+
+/* =====================================================
+   ENTERTAINMENT (GIẢI TRÍ) — LIGHT MODE
+===================================================== */
+
+.archive-page.theme-light .entertainment-row .quick-row-header {
+    border-color: rgba(100, 160, 140, 0.2);
+    background: rgba(235, 250, 245, 0.4);
+}
+
+.archive-page.theme-light .entertainment-row .quick-row-title {
+    color: #4a7a6a;
+}
+
+.archive-page.theme-light .entertainment-row .quick-row-desc {
+    color: rgba(80, 70, 50, 0.4);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-card {
+    background: rgba(255, 250, 240, 0.4);
+    border-color: rgba(100, 160, 140, 0.1);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-card:hover {
+    background: rgba(255, 250, 240, 0.7);
+    border-color: rgba(100, 160, 140, 0.3);
+    box-shadow: 0 6px 25px rgba(100, 160, 140, 0.06);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-title {
+    color: #4a7a6a;
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-desc {
+    color: rgba(80, 70, 50, 0.35);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-icon {
+    color: #4a7a6a;
+}
+
+/* =====================================================
+   FIX QUAN TRỌNG: LINK TRONG ENTERTAINMENT (LIGHT MODE)
+===================================================== */
+
+.archive-page.theme-light .entertainment-row .quick-link-go,
+.archive-page.theme-light .entertainment-row .quick-link-go.show {
+    background: rgba(100, 160, 140, 0.08) !important;
+    border-color: rgba(100, 160, 140, 0.2) !important;
+    color: #4a7a6a !important;
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-go:hover,
+.archive-page.theme-light .entertainment-row .quick-link-go.show:hover {
+    background: rgba(100, 160, 140, 0.15) !important;
+    border-color: rgba(100, 160, 140, 0.35) !important;
+    color: #2a5a4a !important;
+}
+
+/* =====================================================
+   NẾU LINK DÙNG MÀU CHỦ ĐỀ CHUNG CỦA SITE
+===================================================== */
+
+.archive-page.theme-light .entertainment-row .quick-link-go {
+    background: rgba(180, 150, 80, 0.06) !important;
+    border-color: rgba(180, 150, 80, 0.15) !important;
+    color: #6a5a3a !important;
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-go:hover {
+    background: rgba(180, 150, 80, 0.12) !important;
+    border-color: rgba(180, 150, 80, 0.3) !important;
+    color: #4a3a28 !important;
+}
