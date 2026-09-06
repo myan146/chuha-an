@@ -3251,7 +3251,7 @@ function generateIeltsQuestions() {
         // =================================================
         { 
             type: "Writing Task 1", 
-            question: "Describe your daily routine with your loved one in 100 words. Mô tả thói quen hàng ngày của bạn với người yêu.", 
+            question: "Describe your daily routine with your loved one in 100 words.", 
             topic: "Thói quen hàng ngày", 
             hasInput: true, 
             isOpen: true,
@@ -3259,7 +3259,7 @@ function generateIeltsQuestions() {
         },
         { 
             type: "Writing Task 1", 
-            question: "Write a short paragraph about a romantic memory in 150 words. Viết một đoạn văn ngắn về một kỷ niệm lãng mạn.", 
+            question: "Write a short paragraph about a romantic memory in 150 words.", 
             topic: "Kỷ niệm lãng mạn", 
             hasInput: true, 
             isOpen: true,
@@ -3267,7 +3267,7 @@ function generateIeltsQuestions() {
         },
         { 
             type: "Writing Task 2", 
-            question: "Some people believe that love is a choice, not just a feeling. Discuss both views and give your opinion. Nhiều người tin rằng tình yêu là sự lựa chọn, không chỉ là cảm xúc. Bạn nghĩ sao?", 
+            question: "Some people believe that love is a choice, not just a feeling. Discuss both views and give your opinion.", 
             topic: "Tình yêu: cảm xúc hay lựa chọn?", 
             hasInput: true, 
             isOpen: true,
@@ -3275,7 +3275,7 @@ function generateIeltsQuestions() {
         },
         { 
             type: "Writing Task 2", 
-            question: "Do you agree that 'love is about compromise'? Write an essay supporting your view. Bạn có đồng ý rằng 'tình yêu là sự thỏa hiệp'? Viết một bài luận.", 
+            question: "Do you agree that 'love is about compromise'? Write an essay supporting your view.", 
             topic: "Thỏa hiệp trong tình yêu", 
             hasInput: true, 
             isOpen: true,
@@ -4030,6 +4030,46 @@ function playClickSound() {
         audio.volume = 0.4;
         audio.play().catch(() => {});
     } catch(e) {}
+}
+
+/* =====================================================
+   ENTERTAINMENT (GIẢI TRÍ) — LIGHT MODE
+===================================================== */
+
+.archive-page.theme-light .entertainment-row .quick-row-header {
+    border-color: rgba(100, 160, 140, 0.2);
+    background: rgba(235, 250, 245, 0.4);
+}
+
+.archive-page.theme-light .entertainment-row .quick-row-title {
+    color: #4a7a6a;
+}
+
+.archive-page.theme-light .entertainment-row .quick-row-desc {
+    color: rgba(80, 70, 50, 0.4);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-card {
+    background: rgba(255, 250, 240, 0.4);
+    border-color: rgba(100, 160, 140, 0.1);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-card:hover {
+    background: rgba(255, 250, 240, 0.7);
+    border-color: rgba(100, 160, 140, 0.3);
+    box-shadow: 0 6px 25px rgba(100, 160, 140, 0.06);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-title {
+    color: #4a7a6a;
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-desc {
+    color: rgba(80, 70, 50, 0.35);
+}
+
+.archive-page.theme-light .entertainment-row .quick-link-icon {
+    color: #4a7a6a;
 }
 
 /* =====================================================
